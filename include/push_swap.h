@@ -41,8 +41,8 @@ int		binary_search(int numbers[], int target, int len);
 int		*check_error(int argc, char *argv[]);
 int		check_duplication(int *numbers, int low, int high);
 void	exit_and_errormsg(void);
-char	**sort_under_five(int argc, t_root *stack_a);
-char	**sort_over_six(t_root *stack_a);
+t_singl	*sort_under_five(int argc, t_root *stack_a);
+t_singl	*sort_over_six(t_root *stack_a);
 int		ut_top_node_ismin(t_root *linked_list);
 int		ut_top_node_ismax(t_root *linked_list);
 int		ut_top_node_ismid(t_root *linked_list);
@@ -55,6 +55,9 @@ int		ut_issign(int c);
 int		ut_isspace(int c);
 char	**ut_produce_double_p(const char *s1, const char *s2);
 int		ut_top_node_ismin(t_root *linked_list);
-void	print_oparation(char *operation[]);
+void	print_node(t_singl	*singl);
+int		get_max(t_root *linked_list);
+int		get_min(t_root *linked_list);
+void	put_min_top(t_root *stack_a);
 
 #endif

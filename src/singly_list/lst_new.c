@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_over_six.c                                    :+:      :+:    :+:   */
+/*   lst_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 06:20:55 by itakumi          ###   ########.fr       */
+/*   Created: 2025-06-28 15:39:39 by tigarashi         #+#    #+#             */
+/*   Updated: 2025-06-28 15:39:39 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "list.h"
 
-t_singl	*sort_over_six(t_root *stack_a)
+t_singl *lst_new(char *data)
 {
-	(void)stack_a;
-	return (0);
+    t_singl *new_node;
+
+    new_node = malloc(sizeof(t_singl));
+    if (new_node == NULL)
+        return (NULL);
+    new_node->operation = data;
+    new_node->next = NULL;
+    return (new_node);
 }

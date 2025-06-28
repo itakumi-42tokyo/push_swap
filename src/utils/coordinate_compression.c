@@ -15,6 +15,7 @@
 
 // ここで、ソートされていないstack_aを作る。
 // mallocできなかったり、
+#include <stdio.h>
 t_root	*coordinate_compression(int *numbers, int *sorted_numbers, int len)
 {
 	int		i;
@@ -32,7 +33,7 @@ t_root	*coordinate_compression(int *numbers, int *sorted_numbers, int len)
 		if (i == 0)
 			node = ut_create_first_node(root, index);
 		else
-			node = ut_create_node(root, index);
+			node = ut_create_node_back(root, index);
 		if (node == NULL)
 		{
 			cdll_clear(&root, cdll_delone);

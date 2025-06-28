@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 	int		*unchange_numbers;
 	int		*sorted_numbers;
 	t_root	*stack_a;
-	char	**operation;
+	t_singl	*operation;
 
 	if (argc == 1 || argv == NULL || argv[1][0] == '\0')
 		exit(EXIT_SUCCESS);
@@ -39,13 +39,17 @@ int	main(int argc, char *argv[])
 	stack_a = coordinate_compression(unchange_numbers, sorted_numbers, argc - 1);
 	if (stack_a == NULL)
 		exit_and_errormsg();
+	free(unchange_numbers);
+	free(sorted_numbers);
 	if (argc < 7)
 		operation = sort_under_five(argc, stack_a);
 	else
 		operation = sort_over_six(stack_a);
-	if (operation == NULL)
-		exit_and_errormsg();
-	print_oparation(operation);
+	// if (operation == NULL)
+	// 	exit_and_errormsg();
+	// print_node(operation);
+	lst_clear(&operation);
+	cdll_clear(&stack_a, cdll_delone);
 	return (0);
 }
 // mallocできなかったときは、error_msgを返すべきなのかが分からない。

@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_over_six.c                                    :+:      :+:    :+:   */
+/*   lst_add_back.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 06:20:55 by itakumi          ###   ########.fr       */
+/*   Created: 2025-06-28 15:50:24 by tigarashi         #+#    #+#             */
+/*   Updated: 2025-06-28 15:50:24 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "list.h"
 
-t_singl	*sort_over_six(t_root *stack_a)
+void    lst_add_back(t_singl **head_node, t_singl *new_node)
 {
-	(void)stack_a;
-	return (0);
+    t_singl	*last_node;
+
+    if (head_node == NULL)
+		return ;
+	if (*head_node == NULL)
+	{
+		*head_node = new_node;
+		return ;
+	}
+	last_node = lst_last(*head_node);
+	last_node->next = new_node;
 }

@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_over_six.c                                    :+:      :+:    :+:   */
+/*   lst_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 06:20:55 by itakumi          ###   ########.fr       */
+/*   Created: 2025-06-28 18:46:44 by tigarashi         #+#    #+#             */
+/*   Updated: 2025-06-28 18:46:44 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "list.h"
 
-t_singl	*sort_over_six(t_root *stack_a)
+void	lst_clear(t_singl **singl)
 {
-	(void)stack_a;
-	return (0);
+	t_singl	*tmp;
+
+	if (singl == NULL || *singl == NULL)
+		return ;
+	while (*singl)
+	{
+		tmp = (*singl)->next;
+		free(*singl);
+		*singl = tmp;
+	}
 }

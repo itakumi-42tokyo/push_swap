@@ -41,7 +41,12 @@ SRCS = main.c\
 		circular_bidirect_list/cdll_iter.c\
 		circular_bidirect_list/cdll_last.c\
 		circular_bidirect_list/cdll_new.c\
-		circular_bidirect_list/cdll_size.c
+		circular_bidirect_list/cdll_size.c\
+		singly_list/lst_add_back.c\
+		singly_list/lst_all.c\
+		singly_list/lst_last.c\
+		singly_list/lst_new.c\
+		singly_list/lst_clear.c
 
 #Objets
 OBJ_DIR = build

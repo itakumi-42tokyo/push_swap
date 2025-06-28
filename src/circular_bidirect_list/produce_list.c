@@ -14,21 +14,37 @@
 #include "push_swap.h"
 
 // ここでどのようにして、循環リストに挿入するか
+
+t_list	*ut_create_node_back(t_root *root, int data)
+{
+	t_list	*new_node;
+	t_list	*sentinel;
+
+	sentinel = root->sentinel;
+	new_node = malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->next = sentinel;
+	new_node->prev = sentinel->prev;
+	(sentinel->prev)->next = new_node;
+	sentinel->prev = new_node;
+	new_node->number = data;
+	return (new_node);
+}
+
 t_list	*ut_create_node(t_root *root, int data)
 {
 	t_list	*new_node;
 	t_list	*sentinel;
-	t_list	*sentinel_prev;
 
 	sentinel = root->sentinel;
-	sentinel_prev = sentinel->prev;
 	new_node = malloc(sizeof(t_list));
 	if (new_node == NULL)
 		return (NULL);
-	sentinel->prev = new_node;
-	sentinel_prev->next = new_node;
-	new_node->prev = sentinel_prev;
-	new_node->next = sentinel;
+	new_node->prev = sentinel;
+	new_node->next = sentinel->next;
+	(sentinel->next)->prev = new_node;
+	sentinel->next = new_node;
 	new_node->number = data;
 	return (new_node);
 }
