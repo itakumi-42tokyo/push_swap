@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 05:47:13 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 06:48:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/29 14:45:30 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	print_node(t_singl *singl)
 	}
 }
 
-#include <stdio.h>
 int	get_target_index(t_root *linked_list, int target)
 {
 	int		index;
@@ -45,7 +44,6 @@ int	get_target_index(t_root *linked_list, int target)
 }
 
 // これはリストの長さから計算する必要がある
-
 
 #include <stdio.h>
 void	put_min_top(t_root *stack_a)
