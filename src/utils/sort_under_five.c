@@ -122,6 +122,8 @@ t_singl	*sort_three(t_root *stack_a, t_singl **singl)
 static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
 	put_min_top(stack_a);
+	if (check_sorted(stack_a) == 1)
+		return (*singl);
 	pb(stack_a, stack_b);
 	// lst_all(singl, "pb");
 	write(1, "pb\n", 3);
@@ -132,12 +134,13 @@ static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 }
 
 // 今後sorted_over_sixと組み合わせる可能性があるので，拡張性を持たせるために，操作文字列リストも受け取るようにしたほうが良いな。
+// 一旦，何も考えずに，最小値２つをプッシュしてみる。
+// ２番に最小なものをまず見つける。
 
 static t_singl	*sort_five(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
-	(void)stack_a;
-	(void)stack_b;
-
+	
+	
 	return (*singl);
 }
 

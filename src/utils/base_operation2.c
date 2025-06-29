@@ -44,6 +44,9 @@ int	get_target_index(t_root *linked_list, int target)
 	return (-1);
 }
 
+// これはリストの長さから計算する必要がある
+
+
 #include <stdio.h>
 void	put_min_top(t_root *stack_a)
 {
@@ -70,4 +73,22 @@ void	put_min_top(t_root *stack_a)
 		rra(stack_a);
 		write(1, "rra\n", 5);
 	}
+}
+
+// ソートされていいるかどうかを確認する関数
+
+int	check_sorted(t_root *stack)
+{
+	t_list	*cur;
+
+	if (stack == NULL)
+		return (0);
+	cur = (stack->sentinel)->next;
+	while (cur->next != stack->sentinel)
+	{
+		if (cur->number > (cur->next)->number)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
 }
