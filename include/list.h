@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 16:34:39 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 20:46:40 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 
 // 双方向リストはノードの数をもたせたほうが良いのか？
 // リストを消す場合、残りのノードが１つになったときはnext,prevを自分自身を指すようにするのか？
+
+// 合計のコストも書いておくべきか？
+typedef struct s_cost
+{
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_cost;
 
 typedef struct s_root
 {

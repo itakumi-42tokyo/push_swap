@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/24 20:53:25 by itakumi           #+#    #+#              #
-#    Updated: 2025/06/30 16:17:50 by itakumi          ###   ########.fr        #
+#    Updated: 2025/06/30 20:22:22 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,4 +129,7 @@ define LIB_FCLEAN
 	@echo "$(COLOR_END)"
 endef
 
-.PHONY: all clean fclean re
+debug: CFLAGS=
+debug: re
+
+.PHONY: all clean fclean re debug
