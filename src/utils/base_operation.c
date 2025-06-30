@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 09:45:56 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 16:23:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	sa(t_root *stack_a)
 	int		tmp;
 	t_list	*first_node;
 
+	write(1, "sa\n", 3);
 	first_node = (stack_a->sentinel)->next;
 	tmp = first_node->number;
 	first_node->number = first_node->next->number;
@@ -31,6 +32,7 @@ void	sb(t_root *stack_b)
 	int		tmp;
 	t_list	*first_node;
 
+	write(1, "sb\n", 3);
 	first_node = (stack_b->sentinel)->next;
 	tmp = first_node->number;
 	first_node->number = first_node->next->number;
@@ -41,6 +43,7 @@ void	ss(t_root *stack_a, t_root *stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
+	write(2, "ss\n", 3);
 }
 
 // pushは移動が起きるたびにfreeするべきか？
@@ -71,6 +74,7 @@ int	pa(t_root *stack_a, t_root *stack_b)
 	// first_node_a = new_node;// same?
 	// create_node
 	// そこに情報だけ書き込む感じ
+	write(1, "pa\n", 3);
 	return (0);
 }
 
@@ -96,6 +100,7 @@ int	pb(t_root *stack_a, t_root *stack_b)
 	// new_node->prev = temp;
 	// new_node->next = first_node_b;
 	// first_node_b = new_node;
+	write(1, "pb\n", 3);
 	return (0);
 }
 
@@ -114,6 +119,7 @@ void	ra(t_root *stack_a)
 	(stack_a->sentinel)->prev = first_node;
 	first_node->prev = last_node;
 	first_node->next = stack_a->sentinel;
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_root *stack_b)
@@ -128,12 +134,14 @@ void	rb(t_root *stack_b)
 	(stack_b->sentinel)->next = first_node->next;
 	first_node->prev = last_node;
 	first_node->next = stack_b->sentinel;
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_root *stack_a, t_root *stack_b)
 {
 	ra(stack_a);
 	rb(stack_b);
+	write(1, "rr\n", 3);
 }
 
 void	rra(t_root *stack_a)
@@ -149,6 +157,7 @@ void	rra(t_root *stack_a)
 	last_node->prev = stack_a->sentinel;
 	last_node->next = first_node;
 	first_node->prev = last_node;
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_root *stack_b)
@@ -164,10 +173,12 @@ void	rrb(t_root *stack_b)
 	last_node->prev = stack_b->sentinel;
 	last_node->next = first_node;
 	first_node->prev = last_node;
+	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_root *stack_a, t_root *stack_b)
 {
 	rra(stack_a);
 	rrb(stack_b);
+	write(1, "rrr\n", 4);
 }

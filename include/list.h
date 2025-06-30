@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/27 21:45:12 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 16:34:39 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 #include <stdlib.h>
 // malloc free
 
-# include "stddef.h"
+# include <stddef.h>
 // NULL
+
+#include <stdbool.h>
+// bool
 
 // 双方向リストはノードの数をもたせたほうが良いのか？
 // リストを消す場合、残りのノードが１つになったときはnext,prevを自分自身を指すようにするのか？
@@ -30,6 +33,7 @@ typedef struct s_root
 
 typedef struct s_list
 {
+	bool			lis;
 	int				number;
 	struct s_list	*prev;
 	struct s_list	*next;

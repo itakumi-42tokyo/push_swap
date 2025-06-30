@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 06:26:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 17:26:17 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 
 # include <stdbool.h>
 // bool
+
+#include <limits.h>
+// INT_MIN, INT_MAX
+
 # include "list.h"
 // struct
 
@@ -54,10 +58,12 @@ int		ut_atoi_with_error(const char *nptr, bool *error);
 int		ut_issign(int c);
 int		ut_isspace(int c);
 char	**ut_produce_double_p(const char *s1, const char *s2);
-int		ut_top_node_ismin(t_root *linked_list);
 void	print_node(t_singl	*singl);
 int		get_max(t_root *linked_list);
 int		get_min(t_root *linked_list);
+int		get_next_number(int	limit, t_root *linked_list);
+int		get_target_index(t_root *linked_list, int target);
+int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
 
 #endif

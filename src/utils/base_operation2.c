@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 05:47:13 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/29 14:45:30 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 16:54:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,6 @@ void	print_node(t_singl *singl)
 		write(1, "\n", 1);
 		singl = singl->next;
 	}
-}
-
-int	get_target_index(t_root *linked_list, int target)
-{
-	int		index;
-	t_list	*cur;
-
-	index = 0;
-	cur = (linked_list->sentinel)->next;
-	while (cur != (linked_list->sentinel))
-	{
-		if (cur->number == target)
-			return (index);
-		cur = cur->next;
-		index++;
-	}
-	return (-1);
 }
 
 // これはリストの長さから計算する必要がある
@@ -75,7 +58,7 @@ void	put_min_top(t_root *stack_a)
 
 // ソートされていいるかどうかを確認する関数
 
-int	check_sorted(t_root *stack)
+int	check_sorted_s(t_root *stack)
 {
 	t_list	*cur;
 

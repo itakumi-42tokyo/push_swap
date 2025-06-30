@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:14:27 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/27 22:40:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 16:30:53 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_duplication(int *numbers, int low, int high)
 	return (0);
 }
 
-int	check_sorted(int *numbers, int len)
+static	int	check_sorted(int *numbers, int len)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:05 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 09:45:03 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/06/30 17:51:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static t_singl	*sort_two(t_root *stack_a, t_singl **singl)
 {
 	sa(stack_a);
-	lst_all(singl, "sa");
+	// lst_all(singl, "sa");
 	return (*singl);
 }
 
@@ -91,56 +91,97 @@ t_singl	*sort_three(t_root *stack_a, t_singl **singl)
 	(void)singl;
 	max = get_max(stack_a);
 	if (max == (stack_a->sentinel)->next->number)
-	{
 		ra(stack_a);
-		write(2, "ra\n", 3);
-	}
 	else if (max == (stack_a->sentinel)->next->next->number)
-	{
 		rra(stack_a);
-		write(2, "rra\n", 4);
-	}
 	if ((stack_a->sentinel)->next->number > (stack_a->sentinel)->next->next->number)
-	{
 		sa(stack_a);
-		write(2, "sa\n", 3);
-	}
 	return (NULL);
 }
 
 // stack_bを用意して、入れ込んでいく。
 // オペレーションの文字列も構造体にしたほうが管理しやすい気がしてきた。
 // sort_threeの引数にt_singlを入れたほうが良いのか？
-// sorted系には必ずその要素数の物しか引数を受け付けないという風になっている 
+// sorted系には必ずその要素数の物しか引数を受け付けないという風になっている
 // 返り値は何にしよう。
 
 // どこにstack_bの変数を入れるか決めないといけないな。
 // 上から小さい順になっているので，入れるために
 
-// そもそも操作は実行した瞬間に出力すればよいのか。 
+// そもそも操作は実行した瞬間に出力すればよいのか。
 
 static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
 	put_min_top(stack_a);
-	if (check_sorted(stack_a) == 1)
+	if (check_sorted_s(stack_a) == 1)
 		return (*singl);
 	pb(stack_a, stack_b);
 	// lst_all(singl, "pb");
-	write(1, "pb\n", 3);
 	sort_three(stack_a, singl);
 	pa(stack_a, stack_b);
-	write(1, "pa\n", 3);
 	return (*singl);
 }
 
 // 今後sorted_over_sixと組み合わせる可能性があるので，拡張性を持たせるために，操作文字列リストも受け取るようにしたほうが良いな。
 // 一旦，何も考えずに，最小値２つをプッシュしてみる。
 // ２番に最小なものをまず見つける。
+// paするときに、どのように入れるかが鍵になってくる。
+// 一つ前の数字を戦闘に持っていきたいから
+// すでにソートされたものに対しては、index でraかrraかを判断するしかないのか？
 
 static t_singl	*sort_five(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
-	
-	
+	int		target;
+	int		index;
+
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	sort_three(stack_a, singl);
+	// どこまでループするか定義しないといけない。
+	//　targetを超えない程度の最大値を求める関数を作ろう。
+	//　そして、rraとraのどちらが早いかを確認しないといけない。
+	// targetのインデックスが２より大きかったら、rra
+	// targetのインデックスが２以下だったらra
+	target = get_next_number(stack_b->sentinel->next->number, stack_a);
+	index = get_target_index(stack_a, target);
+	if (index < 2)
+	{
+		while (stack_a->sentinel->next->number != target)
+			ra(stack_a);
+		pa(stack_a, stack_b);
+	}
+	else
+	{
+		while (stack_a->sentinel->next->number != target)
+			rra(stack_a);
+		pa(stack_a, stack_b);
+	}
+	target = get_next_number(stack_b->sentinel->next->number, stack_a);
+	index = get_target_index(stack_a, target);
+	if (index < 2)
+	{
+		while (stack_a->sentinel->next->number != target)
+			ra(stack_a);
+		pa(stack_a, stack_b);
+	}
+	else
+	{
+		while (stack_a->sentinel->next->number != target)
+			rra(stack_a);
+		pa(stack_a, stack_b);
+	}
+	target = get_min(stack_a);
+	index = get_target_index(stack_a, target);
+	if (index < 2)
+	{
+		while (stack_a->sentinel->next->number != target)
+			ra(stack_a);
+	}
+	else
+	{
+		while (stack_a->sentinel->next->number != target)
+			rra(stack_a);
+	}
 	return (*singl);
 }
 
