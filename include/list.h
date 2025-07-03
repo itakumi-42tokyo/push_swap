@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 13:05:59 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:52:56 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_root
 {
 	struct s_list	*sentinel;
 	int				node_len;
+	int				lis_count;
 }	t_root;
 
 typedef struct s_list

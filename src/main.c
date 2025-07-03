@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:10:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/28 06:54:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:46:17 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char *argv[])
 	if (argc < 7)
 		operation = sort_under_five(argc, stack_a);
 	else
-		operation = sort_over_six(stack_a);
+		operation = sort_over_six(argc, stack_a);
 	// if (operation == NULL)
 	// 	exit_and_errormsg();
 	// print_node(operation);

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 13:06:57 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:45:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		*check_error(int argc, char *argv[]);
 int		check_duplication(int *numbers, int low, int high);
 void	exit_and_errormsg(void);
 t_singl	*sort_under_five(int argc, t_root *stack_a);
-t_singl	*sort_over_six(t_root *stack_a);
+t_singl	*sort_over_six(int argc, t_root *stack_a);
 int		ut_top_node_ismin(t_root *linked_list);
 int		ut_top_node_ismax(t_root *linked_list);
 int		ut_top_node_ismid(t_root *linked_list);
@@ -67,6 +67,6 @@ int		get_next_number(int	limit, t_root *linked_list);
 int		get_target_index(t_root *linked_list, int target);
 int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
-t_list	*judge_lis(t_root *root);
+int		find_lis(int argc, t_root *stack_a);
 
 #endif
