@@ -5,131 +5,132 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 14:05:09 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 21:22:37 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/03 11:38:14 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/03 13:31:19 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "list.h"
-#include <math.h>
+#include "libft.h"
 
-// 構造体にlisかどうかを判別するフラグを追加したほうがいいのでは
-t_root	*lis(t_root *stack)
-{
-
-}
-
-void	init_cost(t_cost **cost)
-{
-	(*cost)->ra = 0;
-	(*cost)->rb = 0;
-	(*cost)->rr = 0;
-	(*cost)->rra = 0;
-	(*cost)->rrb = 0;
-	(*cost)->rrr = 0;
-}
-
-// 現在の状況下で、どの要素が一番コストが低いかを確認する関数。
-// なぜ、s系を使わないかというとソートされた形を崩したくないから。
-// 今回はpa専用の関数
-
-int	compere_cost(t_cost *cost1, t_cost *cost2)
-{
-	int	cost1_sum;
-	int	cost2_sum;
-
-	cost1_sum = 0;
-	cost1_sum += cost1->ra;
-	cost1_sum += cost1->rb;
-	cost1_sum += cost1->rr;
-	cost1_sum += cost1->rra;
-	cost1_sum += cost1->rrb;
-	cost1_sum += cost1->rrr;
-	cost2_sum = 0;
-	cost2_sum += cost2->ra;
-	cost2_sum += cost2->rb;
-	cost2_sum += cost2->rr;
-	cost2_sum += cost2->rra;
-	cost2_sum += cost2->rrb;
-	cost2_sum += cost2->rrr;
-	if (cost1_sum > cost2_sum)
-		return (1);
-	else if (cost1_sum < cost2_sum)
-		return (-1);
-	return (0);
-}
-
-void	minimize_cost(t_cost **cost)
-{
-	while ((*cost)->ra < 1 || (*cost)->rb < 1)
-	{
-		(*cost)->rr += 1;
-		(*cost)->ra -= 1;
-		(*cost)->rb -= 1;
-	}
-	while ((*cost)->rra < 1 || (*cost)->rrb < 1)
-	{
-		(*cost)->rrr += 1;
-		(*cost)->rra -= 1;
-		(*cost)->rrb -= 1;
-	}
-	while ((*cost)->ra < 1 || (*cost)->rb < 1)
-	{
-		(*cost)->rr += 1;
-		(*cost)->ra -= 1;
-		(*cost)->rb -= 1;
-	}
-	while ((*cost)->rra < 1 || (*cost)->rrb < 1)
-	{
-		(*cost)->rrr += 1;
-		(*cost)->rra -= 1;
-		(*cost)->rrb -= 1;
-	}
-}
-
-t_cost	*count_cost(t_root *stack_a, t_root *stack_b)
+// リスト構造を使って、lisを実行したい。
+// この場合は配列のほうが扱いやすいので、配列にする関数を作るかどうか
+//
+#include <stdio.h>
+int	*format_array(t_root *root)
 {
 	int		i;
-	int		target;
-	int		index;
-	t_list	*cur_b;
-	t_cost	*cost;
-	t_cost	*min_cost;
+	int		*arr;
+	t_list	*cur;
 
-	if (!stack_a || !stack_a->sentinel || !stack_b || !stack_b->sentinel)
+	arr = malloc(sizeof(int) * root->node_len);
+	if (arr == NULL)
 		return (NULL);
-	cost = malloc(sizeof(cost));
-	if (cost == NULL)
-		return (NULL);
-	if (min_cost == NULL)
-		return (free(cost), NULL);
-	init_cost(&min_cost);
-	cur_b = stack_b->sentinel->next;
-	while (i < stack_b->node_len)
+	cur = root->sentinel->next;
+	i = 0;
+	while (cur != root->sentinel)
 	{
-		init_cost(&cost);
-		target = get_next_number(cur_b->number, stack_a);
-		index = get_target_index(stack_a, target);
-		if (index < stack_a->node_len / 2)
+		arr[i++] = cur->number;
+		cur = cur->next;
+	}
+	return (arr);
+}
+
+t_lis	*check_lis(t_root *root, int *arr)
+{
+	int		i;
+	int		j;
+	t_lis	*lis;
+
+	lis = malloc(sizeof(t_lis));
+	if (lis == NULL)
+		return (NULL);
+	i = 1;
+	while (i < root->node_len)
+	{
+		j = 0;
+		while (j < i)
 		{
-			cost->ra = index;
+			if (arr[i] < arr[j] && lis->dp[i] < lis->dp[j] + 1)
+			{
+				lis->dp[i] = lis->dp[j] + 1;
+				lis->prev[i] = j;
+			}
+			j++;
 		}
-		else
-		{
-			cost->rra = stack_a->node_len - index;
-		}
-		if (i < stack_b->node_len / 2)
-		{
-			cost->ra = i;
-		}
-		else
-		{
-			cost->rra = stack_b->node_len - i;
-		}
-		if (compere_cost(cost, min_cost))
-			min_cost = cost;
 		i++;
 	}
-	return (min_cost);
+	lis->max_len = 0;
+	lis->max_idx = -1;
+	return (lis);
 }
+
+t_lis	*check_lis2(t_root *root)
+{
+	int		i;
+	int		*arr;
+	t_lis	*lis;
+
+	arr = format_array(root);
+	if (arr == NULL)
+		return (NULL);
+	lis = check_lis(root, arr);
+	if (lis == NULL)
+		return (free(arr), NULL);
+	i = 0;
+	while (i < root->node_len)
+	{
+		if (lis->dp[i] > lis->max_len)
+		{
+			lis->max_len = lis->dp[i];
+			lis->max_idx = i;
+		}
+		i++;
+	}
+	lis->arr = arr;
+	return (lis);
+}
+
+
+
+// これをどのようにして、２５行以内に納めろというのか。
+// 構造体にして返すしかなさそう。
+// 構造体の中の配列は保持されるのだろうか。
+
+t_list	*judge_lis(t_root *root)
+{
+	int		i;
+	int		result[MAX_ARG];
+	t_lis	*lis;
+	t_list	*cur;
+
+	lis = check_lis2(root);
+	if (lis == NULL)
+		return (NULL);
+	i = lis->max_len - 1;
+	printf("max_idx: %d\n", lis->max_idx);
+	while (lis->max_idx != -1)
+	{
+		result[i--] = (lis->arr)[lis->max_idx];
+		printf("max_idx: %d\n", lis->max_idx);
+		lis->max_idx = (lis->prev)[lis->max_idx];
+		printf("%p\n", lis->prev);
+	}
+	cur = root->sentinel->next;
+	while (cur != root->sentinel)
+	{
+		i = 0;
+		while (i < lis->max_len)
+		{
+			if (cur->number == result[i++])
+				cur->lis = true;
+		}
+		cur = cur->next;
+	}
+	return (free(lis->arr), free(lis), cur);
+}
+
+// index化するときにlisも確認すればよくね？
+//　numbersにlisを掛けて、
+// い

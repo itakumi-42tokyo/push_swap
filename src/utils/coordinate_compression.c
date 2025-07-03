@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 20:05:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/27 22:48:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:34:32 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_root	*coordinate_compression(int *numbers, int *sorted_numbers, int len)
 	if (root == NULL)
 		return (NULL);
 	i = 0;
+	root->node_len = len;
 	while (i < len)
 	{
 		index = binary_search(sorted_numbers, numbers[i], len);

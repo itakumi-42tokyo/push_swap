@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/24 20:53:25 by itakumi           #+#    #+#              #
-#    Updated: 2025/06/30 20:22:22 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/03 11:38:09 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = main.c\
 		utils/coordinate_compression.c\
 		utils/exit_and_errormsg.c\
 		utils/lis.c\
+		utils/calculate_cost.c\
 		utils/math.c\
 		utils/math2.c\
 		utils/merge_insert_sort.c\

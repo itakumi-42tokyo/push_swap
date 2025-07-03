@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 20:46:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:05:59 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ typedef struct s_singl
 	char		*operation;
 	struct s_singl	*next;
 }	t_singl;
+
+typedef struct s_lis
+{
+	int		*arr;
+	int		dp[500];
+	int		prev[500];
+	int		max_len;
+	int		max_idx;
+}	t_lis;
 
 t_list	*ut_create_node_back(t_root *root, int data);
 t_list	*ut_create_node(t_root *root, int data);

@@ -6,12 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 17:26:17 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 13:06:57 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# define MAX_ARG 500
 
 # include <unistd.h>
 // read, write
@@ -65,5 +67,6 @@ int		get_next_number(int	limit, t_root *linked_list);
 int		get_target_index(t_root *linked_list, int target);
 int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
+t_list	*judge_lis(t_root *root);
 
 #endif
