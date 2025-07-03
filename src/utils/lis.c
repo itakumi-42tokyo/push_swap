@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:38:14 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 13:50:56 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:43:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,10 @@ int	find_lis(int argc, t_root *stack_a)
 		while (i < max_len)
 		{
 			if (cur->number == result[i])
+			{
 				cur->lis = true;
+				stack_a->lis_count += 1;
+			}
 			i++;
 		}
 		cur = cur->next;

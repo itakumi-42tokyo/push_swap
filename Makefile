@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/24 20:53:25 by itakumi           #+#    #+#              #
-#    Updated: 2025/07/03 11:38:09 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/03 15:35:22 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = main.c\
 		utils/lis.c\
 		utils/calculate_cost.c\
 		utils/math.c\
-		utils/math2.c\
+		utils/get.c\
 		utils/merge_insert_sort.c\
 		utils/quick_sort.c\
 		utils/sort_over_six.c\

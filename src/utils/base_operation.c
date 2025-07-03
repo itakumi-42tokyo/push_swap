@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 16:23:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 15:32:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	pa(t_root *stack_a, t_root *stack_b)
 	// first_node_a = new_node;// same?
 	// create_node
 	// そこに情報だけ書き込む感じ
+	stack_a->node_len += 1;
+	stack_b->node_len -= 1;
 	write(1, "pa\n", 3);
 	return (0);
 }
@@ -100,6 +102,8 @@ int	pb(t_root *stack_a, t_root *stack_b)
 	// new_node->prev = temp;
 	// new_node->next = first_node_b;
 	// first_node_b = new_node;
+	stack_b->node_len += 1;
+	stack_a->node_len -= 1;
 	write(1, "pb\n", 3);
 	return (0);
 }

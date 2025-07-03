@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:05:09 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 13:03:47 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 16:15:02 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,12 @@ void	minimize_cost(t_cost **cost)
 
 
 // これは、paするためのコスト計算
-t_cost	*count_cost(t_root *stack_a, t_root *stack_b)
+t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b)
 {
 	int		i;
 	int		target;
 	int		index;
+	bool	b_sentinel_f;
 	t_list	*cur_b;
 	t_cost	*cost;
 	t_cost	*min_cost;
@@ -113,24 +114,63 @@ t_cost	*count_cost(t_root *stack_a, t_root *stack_b)
 	if (min_cost == NULL)
 		return (free(cost), NULL);
 	init_cost(&min_cost);
-	cur_b = stack_b->sentinel->next;
+	cur_b = stack_b->sentinel->next;//これがsentinelの場合どうするか
+	if (cur_b == stack_b->sentinel)
+		b_sentinel_f = true;
+	// フラグをつけるか？
 	i = 0;
-	while (i < stack_b->node_len)
+	while (i < stack_b->node_len)// 初回は、そもそもここが０になるはずでは？
 	{
 		init_cost(&cost);
-		target = get_next_number(cur_b->number, stack_a);
-		index = get_target_index(stack_a, target);
+		if (b_sentinel_f == false)
+		{
+			target = get_next_number(cur_b->number, stack_a);
+			index = get_target_index(stack_a, target);
+		}
+		else
+			index = 0;
 		if (index < stack_a->node_len / 2)
 			cost->ra = index;
 		else
 			cost->rra = stack_a->node_len - index;
-		if (i < stack_b->node_len / 2)
-			cost->ra = i;
-		else
-			cost->rra = stack_b->node_len - i;
+		if (b_sentinel_f == false)
+		{
+			if (i < stack_b->node_len / 2)
+				cost->rb = i;
+			else
+				cost->rrb = stack_b->node_len - i;
+		}
 		if (compere_cost(cost, min_cost))
 			min_cost = cost;
+		cur_b = cur_b->next;
 		i++;
 	}
 	return (min_cost);
+}
+
+t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b)
+{
+	int		i;
+	int		target;
+	int		index;
+	t_list	*cur_a;
+	t_cost	*cost;
+	t_cost	*min_cost;
+
+	if (!stack_a || !stack_a->sentinel || !stack_b || !stack_b->sentinel)
+		return (NULL);
+	cost = malloc(sizeof(t_cost));
+	if (cost == NULL)
+		return (NULL);
+	min_cost = malloc(sizeof(t_cost));
+	if (min_cost == NULL)
+		return (free(cost), NULL);
+	init_cost(&min_cost);
+	cur_a = stack_a->sentinel->next;// これがsentinelになることはなし。
+	i = 0;
+	while (i < stack_b->node_len)
+	{
+		init_cost(&cost);
+		target = get_next_number()
+	}
 }
