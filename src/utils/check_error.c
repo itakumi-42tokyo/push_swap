@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:14:27 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 16:30:53 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:29:27 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_duplication(int *numbers, int low, int high)
 	return (0);
 }
 
-static	int	check_sorted(int *numbers, int len)
+int	check_sorted(int *numbers, int len)
 {
 	int	i;
 
@@ -77,8 +77,11 @@ int	*check_error(int argc, char *argv[])
 		i++;
 		argv++;
 	}
-	if (check_sorted(numbers, argc - 1))
-		return (free(numbers), NULL);
+	if (check_sorted(numbers, argc - 1) != 0)
+	{
+		free(numbers);
+		exit (EXIT_SUCCESS);
+	}
 	if (check_duplication(numbers, 0, argc - 2) != 0)
 		return (free(numbers), NULL);
 	return (numbers);

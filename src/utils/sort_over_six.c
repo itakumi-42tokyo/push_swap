@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 13:45:51 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:03:06 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 
 	find_lis(argc, stack_a);
 	cur = stack_a->sentinel->next;
-	while (cur != stack_a->sentinel)
-	{
-		printf("%d: %d\n", cur->number, cur->lis);
-		cur = cur->next;
-	}
+	
 	return (0);
 }

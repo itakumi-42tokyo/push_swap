@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 13:45:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:21:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int		get_target_index(t_root *linked_list, int target);
 int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
 int		find_lis(int argc, t_root *stack_a);
+int		check_sorted(int *numbers, int len);
 
 #endif
