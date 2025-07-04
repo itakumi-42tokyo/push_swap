@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/04 13:33:48 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:40:01 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 	i = 0;
 	// 非LISがなくなるまで、pbする。
 	count = stack_a->node_len - stack_a->lis_count;
-	printf("node_len: %d\n", stack_a->node_len);
-	printf("lis_count: %d\n", stack_a->lis_count);
+	// printf("node_len: %d\n", stack_a->node_len);
+	// printf("lis_count: %d\n", stack_a->lis_count);
 	while (i++ < count)
 	{
 		if (check_sorted_s(stack_a))// ローテーションしてしまうので、イマイチチェックする必要がない。
@@ -87,5 +87,6 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 		while (stack_a->sentinel->next->number != 0)
 			rra(stack_a);
 	}
+	cdll_clear(&stack_b, cdll_delone);
 	return (0);
 }

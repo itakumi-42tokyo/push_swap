@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:02:37 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 15:37:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:38:02 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	get_next_number(int	now, t_root *linked_list)
 	int		i;
 	int		len;
 	int		*numbers;
+	int		next_number;
 	t_list	*cur;
 
 	if (linked_list == NULL || linked_list->sentinel == NULL)
@@ -66,8 +67,16 @@ int	get_next_number(int	now, t_root *linked_list)
 	while (i < len)
 	{
 		if (numbers[i] > now)
-			return (numbers[i]);
+			return (next_number = numbers[i], free(numbers), next_number);
 		i++;
 	}
-	return (numbers[i]);
+	next_number = numbers[i];
+	free(numbers);
+	return (next_number);
 }
+
+// // pa専用
+// int	get_prev_number(int now, t_root *linked_list)
+// {
+
+// }

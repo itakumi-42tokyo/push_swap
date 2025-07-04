@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:05:09 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/04 13:33:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 13:55:19 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f)
 			i++;
 			continue;
 		}
-		target = get_next_number(cur_a->number, stack_b);
+		target = get_next_number(cur_a->number, stack_b);// ここでpbするのは、ターゲットよりも一つ少ない数字である。
 		index = get_target_index(stack_a, target);
 		if (index <= stack_b->node_len / 2)
 			cost->rb = index;
