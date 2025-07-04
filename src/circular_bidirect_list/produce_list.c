@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:12:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/27 22:48:46 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 11:28:58 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // ここでどのようにして、循環リストに挿入するか
 
-t_list	*ut_create_node_back(t_root *root, int data)
+t_list	*ut_create_node_back(t_root *root, int data, bool lis_f)
 {
 	t_list	*new_node;
 	t_list	*sentinel;
@@ -29,10 +29,11 @@ t_list	*ut_create_node_back(t_root *root, int data)
 	(sentinel->prev)->next = new_node;
 	sentinel->prev = new_node;
 	new_node->number = data;
+	new_node->lis = lis_f;
 	return (new_node);
 }
 
-t_list	*ut_create_node(t_root *root, int data)
+t_list	*ut_create_node(t_root *root, int data, bool lis_f)
 {
 	t_list	*new_node;
 	t_list	*sentinel;
@@ -46,6 +47,7 @@ t_list	*ut_create_node(t_root *root, int data)
 	(sentinel->next)->prev = new_node;
 	sentinel->next = new_node;
 	new_node->number = data;
+	new_node->lis = lis_f;
 	return (new_node);
 }
 
@@ -65,12 +67,13 @@ t_root	*ut_create_root(void)
 	}
 	(linked_list->sentinel)->prev = linked_list->sentinel;
 	(linked_list->sentinel)->next = linked_list->sentinel;
-	(linked_list->sentinel)->number = 0;
+	(linked_list->sentinel)->number = -1;
+	(linked_list->sentinel)->lis = false;
 	return (linked_list);
 }
 
 // sentinelの前に挿入して、new_nodeの前とつなげる
-t_list	*ut_create_first_node(t_root *linked_list, int data)
+t_list	*ut_create_first_node(t_root *linked_list, int data, bool lis_f)
 {
 	t_list	*node;
 
@@ -83,6 +86,7 @@ t_list	*ut_create_first_node(t_root *linked_list, int data)
 	node->next = (linked_list)->sentinel;
 	node->prev = (linked_list)->sentinel;
 	node->number = data;
+	node->lis = lis_f;
 	return (node);
 }
 

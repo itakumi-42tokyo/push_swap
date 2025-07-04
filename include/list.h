@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 14:42:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 10:10:12 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ typedef struct s_lis
 	int		max_idx;
 }	t_lis;
 
-t_list	*ut_create_node_back(t_root *root, int data);
-t_list	*ut_create_node(t_root *root, int data);
+t_list	*ut_create_node_back(t_root *root, int data, bool lis_f);
+t_list	*ut_create_node(t_root *root, int data, bool lis_f);
 t_root	*ut_create_root(void);
-t_list	*ut_create_first_node(t_root *linked_list, int data);
+t_list	*ut_create_first_node(t_root *linked_list, int data, bool lis_f);
 void	cdll_add_back(t_root *lst, t_list *new);
 void	cdll_add_front(t_list **lst, t_list *new);
 void	cdll_clear(t_root **lst, void (*del)(t_list*));

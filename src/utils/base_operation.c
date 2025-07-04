@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 15:32:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 10:12:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ss(t_root *stack_a, t_root *stack_b)
 int	pa(t_root *stack_a, t_root *stack_b)
 {
 	int		tmp;
+	bool	lis_f;
 	t_list	*first_node_b;
 	t_list	*new_node;
 
@@ -62,9 +63,10 @@ int	pa(t_root *stack_a, t_root *stack_b)
 	tmp = first_node_b->number;
 	first_node_b->next->prev = stack_b->sentinel;
 	stack_b->sentinel->next = first_node_b->next;
+	lis_f = first_node_b->lis;
 	free(first_node_b);
 	// first_node_b->prev->next = first_node_b->next;
-	new_node = ut_create_node(stack_a, tmp);
+	new_node = ut_create_node(stack_a, tmp, lis_f);
 	if (new_node == NULL)
 		return (-1);
 	// first_node_a->prev = new_node;
@@ -83,6 +85,7 @@ int	pa(t_root *stack_a, t_root *stack_b)
 int	pb(t_root *stack_a, t_root *stack_b)
 {
 	int		tmp;
+	bool	lis_f;
 	t_list	*first_node_a;
 	t_list	*new_node;
 
@@ -92,8 +95,9 @@ int	pb(t_root *stack_a, t_root *stack_b)
 	tmp = first_node_a->number;
 	(first_node_a->next)->prev = stack_a->sentinel;
 	(stack_a->sentinel)->next = first_node_a->next;
+	lis_f = first_node_a->lis;
 	free(first_node_a);
-	new_node = ut_create_node(stack_b, tmp);
+	new_node = ut_create_node(stack_b, tmp, lis_f);
 	if (new_node == NULL)
 		return (-1);
 	// temp = first_node_b->prev;

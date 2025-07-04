@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:10:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 14:27:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/04 09:12:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 // 2. unchange_numbers.
 // 3. stack_a.
 // 4. stack_b.
+// 5. cost.
 #include <stdio.h>
 int	main(int argc, char *argv[])
 {
