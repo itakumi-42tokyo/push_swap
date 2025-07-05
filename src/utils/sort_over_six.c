@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/04 14:40:01 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/05 18:00:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b)
 }
 
 // ノードを消すということは、その分初期化をしなければいけない。
+// lisが３つより少なければ、しょうがないので、３つでソートする道を選ぶ仕様にしよう。
 t_singl	*sort_over_six(int argc, t_root *stack_a)
 {
 	int		i;

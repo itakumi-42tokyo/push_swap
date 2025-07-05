@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/04 13:08:04 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/05 18:41:22 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	**ut_produce_double_p(const char *s1, const char *s2);
 void	print_node(t_singl	*singl);
 int		get_max(t_root *linked_list);
 int		get_min(t_root *linked_list);
+int		get_prev_number(int now, t_root *linked_list);
 int		get_next_number(int	limit, t_root *linked_list);
 int		get_target_index(t_root *linked_list, int target);
 int		check_sorted_s(t_root *stack);

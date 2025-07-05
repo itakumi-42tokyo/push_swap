@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:14:27 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 14:29:27 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/05 15:31:18 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 // 今回は重複を探すためだけにハッシュテーブルを使うのは
 // 必要性がないと思うので、ソートで検査する
 
+#include <stdio.h>
 int	check_duplication(int *numbers, int low, int high)
 {
 	int	i;
@@ -35,7 +36,10 @@ int	check_duplication(int *numbers, int low, int high)
 	while (i < high)
 	{
 		if (numbers[i] == numbers[i + 1])
+		{
 			return (1);
+		}
+
 		i++;
 	}
 	return (0);
@@ -55,6 +59,7 @@ int	check_sorted(int *numbers, int len)
 	return (1);
 }
 
+#include <stdio.h>
 int	*check_error(int argc, char *argv[])
 {
 	int		i;

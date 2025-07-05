@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:38:14 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/03 14:43:44 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/05 18:18:51 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int	find_lis(int argc, t_root *stack_a)
 		return (0);
 	result = malloc(sizeof(int) * 500);
 	if (!result)
-		return (0);
+		return (free(arr), 0);
 	int	max_len = lis(arr, argc - 1, result);
 	cur = stack_a->sentinel->next;
 	while (cur != stack_a->sentinel)
