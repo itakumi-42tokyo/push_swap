@@ -70,7 +70,10 @@ int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
 int		find_lis(int argc, t_root *stack_a);
 int		check_sorted(int *numbers, int len);
+t_singl *sort_three(t_root *stack_a, t_singl **singl);
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f);
+t_singl *sort_best_move(int argc, t_root *stack_a);
+void    insert_sorted_pb(t_root *stack_a, t_root *stack_b);
 
 #endif

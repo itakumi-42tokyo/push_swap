@@ -39,11 +39,53 @@ void	sb(t_root *stack_b)
 	first_node->next->number = tmp;
 }
 
+// === internal helpers that DO NOT print ===
+static void	swap_first_two(t_root *stack)
+{
+	if (stack == NULL || stack->node_len < 2)
+		return ;
+	int		 tmp;
+	t_list	*first;
+
+	first = stack->sentinel->next;
+	tmp = first->number;
+	first->number = first->next->number;
+	first->next->number = tmp;
+}
+
+static void	rotate_up_noprint(t_root *stack)
+{
+	if (stack == NULL || stack->node_len < 2)
+		return ;
+	t_list *first = stack->sentinel->next;
+	t_list *last = stack->sentinel->prev;
+	stack->sentinel->next = first->next;
+	first->next->prev = stack->sentinel;
+	first->next = stack->sentinel;
+	first->prev = last;
+	last->next = first;
+	stack->sentinel->prev = first;
+}
+
+static void	rotate_down_noprint(t_root *stack)
+{
+	if (stack == NULL || stack->node_len < 2)
+		return ;
+	t_list *first = stack->sentinel->next;
+	t_list *last = stack->sentinel->prev;
+	stack->sentinel->prev = last->prev;
+	last->prev->next = stack->sentinel;
+	last->prev = stack->sentinel;
+	last->next = first;
+	first->prev = last;
+	stack->sentinel->next = last;
+}
+
 void	ss(t_root *stack_a, t_root *stack_b)
 {
-	sa(stack_a);
-	sb(stack_b);
-	write(2, "ss\n", 3);
+	swap_first_two(stack_a);
+	swap_first_two(stack_b);
+	write(1, "ss\n", 3);
 }
 
 // pushは移動が起きるたびにfreeするべきか？
@@ -206,8 +248,8 @@ void rb(t_root *stack)
 // そもそも、この関数を呼び出しているものは何であり、どのような制限をつけているのだろうか。
 void	rr(t_root *stack_a, t_root *stack_b)
 {
-	ra(stack_a);
-	rb(stack_b);
+	rotate_up_noprint(stack_a);
+	rotate_up_noprint(stack_b);
 	write(1, "rr\n", 3);
 }
 
@@ -301,7 +343,7 @@ void rrb(t_root *stack)
 
 void	rrr(t_root *stack_a, t_root *stack_b)
 {
-	rra(stack_a);
-	rrb(stack_b);
+	rotate_down_noprint(stack_a);
+	rotate_down_noprint(stack_b);
 	write(1, "rrr\n", 4);
 }

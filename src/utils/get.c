@@ -93,14 +93,14 @@ int	get_prev_number(int now, t_root *linked_list)
 		cur = cur->next;
 	}
 	quick_sort(numbers, 0, linked_list->node_len - 1);
-	i = linked_list->node_len;
+	i = linked_list->node_len - 1;
 	while (i >= 0)
 	{
 		if (numbers[i] < now)
 			return (prev_number = numbers[i], free(numbers), prev_number);
 		i--;
 	}
-	prev_number = numbers[linked_list->node_len];
+	prev_number = numbers[linked_list->node_len - 1];
 	free(numbers);
 	return (prev_number);
 }

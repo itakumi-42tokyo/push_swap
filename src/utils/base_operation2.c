@@ -39,21 +39,14 @@ void	put_min_top(t_root *stack_a)
 	if (index == 0)
 		return ;
 	else if (index == 1)
-	{
 		sa(stack_a);
-		write(2, "sa\n", 3);
-	}
 	else if (index == 2)
 	{
 		ra(stack_a);
 		ra(stack_a);
-		write(2, "ra\nra\n", 6);
 	}
 	else if (index == 3)
-	{
 		rra(stack_a);
-		write(1, "rra\n", 5);
-	}
 }
 
 // ソートされていいるかどうかを確認する関数

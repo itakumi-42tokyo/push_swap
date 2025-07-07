@@ -40,7 +40,6 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 	int		count;
 	int		index;
 	int		stack_b_len;
-	t_list	*cur;
 	t_cost	*cost;
 	t_root	*stack_b;
 
@@ -48,7 +47,12 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 	if (stack_b == NULL)
 		return (NULL);
 	find_lis(argc, stack_a);
-	cur = stack_a->sentinel->next;
+	// LIS がデータサイズに対して十分でない場合は fallback
+	if (stack_a->lis_count < stack_a->node_len / 6)
+	{
+		cdll_clear(&stack_b, cdll_delone);
+		return (sort_best_move(argc, stack_a));
+	}
 	// コスト計算をして、pbする
 	i = 0;
 	// 非LISがなくなるまで、pbする。
@@ -89,5 +93,5 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 			rra(stack_a);
 	}
 	cdll_clear(&stack_b, cdll_delone);
-	return (0);
+	return (NULL);
 }

@@ -32,6 +32,8 @@ SRCS = main.c\
 		utils/quick_sort.c\
 		utils/sort_over_six.c\
 		utils/sort_under_five.c\
+		utils/sort_best_move.c\
+		utils/insert_sorted.c\
 		utils/ut_atoi_numbers.c\
 		utils/ut_atoi_with_error.c\
 		utils/ut_issign.c\
