@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:10:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 18:20:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:51:19 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 	stack_a = coord_comp(unchange_numbers, sorted_numbers, argc - 1);
 	if (stack_a == NULL)
 		exit_and_errormsg();
-	_free(unchange_numbers, sorted_numbers);
+	_free(&unchange_numbers, &sorted_numbers);
 	if (argc < 7)
 		operation = sort_under_five(argc, stack_a);
 	else

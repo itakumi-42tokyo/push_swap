@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/24 20:53:25 by itakumi           #+#    #+#              #
-#    Updated: 2025/07/09 18:17:02 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/09 18:50:58 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ CFLAGS = -Wall -Werror -Wextra
 SRC_DIR = src
 SRCS = main.c\
 		utils/base_operation.c\
-		utils/base_operation2.c\
 		utils/binary_search.c\
 		utils/check_error.c\
 		utils/coord_comp.c\
@@ -29,10 +28,14 @@ SRCS = main.c\
 		utils/math.c\
 		utils/get.c\
 		utils/merge_insert_sort.c\
+		utils/push.c\
 		utils/quick_sort.c\
+		utils/rotate_both.c\
+		utils/rotate.c\
 		utils/sort_over_six.c\
 		utils/sort_under_five.c\
 		utils/sort_best_move.c\
+		utils/swap.c\
 		utils/insert_sorted.c\
 		utils/ut_atoi_numbers.c\
 		utils/ut_atoi_with_error.c\
