@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinate_compression.c                           :+:      :+:    :+:   */
+/*   coord_comp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 20:05:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/04 10:44:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:17:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // ここで、ソートされていないstack_aを作る。
 // mallocできなかったり、
 #include <stdio.h>
-t_root	*coordinate_compression(int *numbers, int *sorted_numbers, int len)
+t_root	*coord_comp(int *numbers, int *sorted_numbers, int len)
 {
 	int		i;
 	int		index;

@@ -6,20 +6,20 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/04 10:10:12 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:12:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 // malloc free
 
 # include <stddef.h>
 // NULL
 
-#include <stdbool.h>
+# include <stdbool.h>
 // bool
 
 // 双方向リストはノードの数をもたせたほうが良いのか？
@@ -53,7 +53,7 @@ typedef struct s_list
 
 typedef struct s_singl
 {
-	char		*operation;
+	char			*operation;
 	struct s_singl	*next;
 }	t_singl;
 
@@ -78,9 +78,9 @@ void	cdll_iter(t_list *lst, void (*f)(int));
 t_list	*cdll_last(t_root *linked_list);
 t_list	*cdll_new(int num);
 int		cdll_size(t_list *lst);
-void    lst_add_back(t_singl **head_node, t_singl *new_node);
+void	lst_add_back(t_singl **head_node, t_singl *new_node);
 t_singl	*lst_last(t_singl *head_node);
-t_singl *lst_new(char *data);
+t_singl	*lst_new(char *data);
 void	lst_all(t_singl **head_node, char *data);
 void	lst_clear(t_singl **singl);
 

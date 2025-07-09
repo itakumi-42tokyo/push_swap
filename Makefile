@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/24 20:53:25 by itakumi           #+#    #+#              #
-#    Updated: 2025/07/04 09:23:11 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/09 18:17:02 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = main.c\
 		utils/base_operation2.c\
 		utils/binary_search.c\
 		utils/check_error.c\
-		utils/coordinate_compression.c\
+		utils/coord_comp.c\
 		utils/exit_and_errormsg.c\
 		utils/lis.c\
 		utils/calculate_cost.c\

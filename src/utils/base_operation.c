@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:06:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 17:41:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:35:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,6 @@ int	pb(t_root *stack_a, t_root *stack_b)
 // 	first_node->next = stack_b->sentinel;
 // 	write(1, "rb\n", 3);
 // }
-
-#include "push_swap.h" // ヘッダファイル名はご自身のものに合わせてください
 
 // stack_aを上方向に回転 (rotate a)
 void ra(t_root *stack)

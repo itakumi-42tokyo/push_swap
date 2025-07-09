@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:10:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 17:33:39 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:20:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@
 // 3. stack_a.
 // 4. stack_b.
 // 5. cost.
-#include <stdio.h>
+
+static void	_free(int **num1, int **num2)
+{
+	free(*num1);
+	free(*num2);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		*unchange_numbers;
@@ -37,18 +43,14 @@ int	main(int argc, char *argv[])
 	unchange_numbers = ut_atoi_numbers(argc, argv);
 	if (unchange_numbers == NULL)
 		exit_and_errormsg();
-	stack_a = coordinate_compression(unchange_numbers, sorted_numbers, argc - 1);
+	stack_a = coord_comp(unchange_numbers, sorted_numbers, argc - 1);
 	if (stack_a == NULL)
 		exit_and_errormsg();
-	free(unchange_numbers);
-	free(sorted_numbers);
+	_free(unchange_numbers, sorted_numbers);
 	if (argc < 7)
 		operation = sort_under_five(argc, stack_a);
 	else
 		operation = sort_over_six(argc, stack_a);
-	// if (operation == NULL)
-	// 	exit_and_errormsg();
-	// print_node(operation);
 	lst_clear(&operation);
 	cdll_clear(&stack_a, cdll_delone);
 	return (0);

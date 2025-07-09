@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 18:41:22 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:17:54 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdbool.h>
 // bool
 
-#include <limits.h>
+# include <limits.h>
 // INT_MIN, INT_MAX
 
 # include "list.h"
@@ -41,7 +41,7 @@ void	rr(t_root *stack_a, t_root *stack_b);
 void	rra(t_root *stack_a);
 void	rrb(t_root *stack_b);
 void	rrr(t_root *stack_a, t_root *stack_b);
-t_root	*coordinate_compression(int *numbers, int *sorted_numbers, int len);
+t_root	*coord_comp(int *numbers, int *sorted_numbers, int len);
 void	quick_sort(int array[], int low, int high);
 int		binary_search(int numbers[], int target, int len);
 int		*check_error(int argc, char *argv[]);
@@ -64,16 +64,16 @@ void	print_node(t_singl	*singl);
 int		get_max(t_root *linked_list);
 int		get_min(t_root *linked_list);
 int		get_prev_number(int now, t_root *linked_list);
-int		get_next_number(int	limit, t_root *linked_list);
+int		get_next_number(int limit, t_root *linked_list);
 int		get_target_index(t_root *linked_list, int target);
 int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
 int		find_lis(int argc, t_root *stack_a);
 int		check_sorted(int *numbers, int len);
-t_singl *sort_three(t_root *stack_a, t_singl **singl);
+t_singl	*sort_three(t_root *stack_a, t_singl **singl);
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f);
-t_singl *sort_best_move(int argc, t_root *stack_a);
-void    insert_sorted_pb(t_root *stack_a, t_root *stack_b);
+t_singl	*sort_best_move(int argc, t_root *stack_a);
+void	insert_sorted_pb(t_root *stack_a, t_root *stack_b);
 
 #endif
