@@ -6,27 +6,13 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:14:27 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 15:31:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 21:21:14 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../lib/libft/libft.h"
 
-// 1.　数字以外の文字が入っている状態を検知する（INT＿MAX MINのものも弾く）
-// 2. 重複している場合やすでにソート済みのものを弾く
-// 焦らずにこの関数はエラーチェックのみに仕様
-// 数字は最大でも　INT＿MAX個しか来ないと仮定して良い。
-// なぜなら、私は"引数に" 5 5 5" 5　みたいなものに対応させないから。
-// しかし、int_maxこの配列を宣言するのに安全性はあるのか
-// 配列を作らないなら、この場でlistを作ったほうが良いな
-//　座標圧縮するのかどうか
-// 現在何を求めているのか
-
-// 今回は重複を探すためだけにハッシュテーブルを使うのは
-// 必要性がないと思うので、ソートで検査する
-
-#include <stdio.h>
 int	check_duplication(int *numbers, int low, int high)
 {
 	int	i;
@@ -39,7 +25,6 @@ int	check_duplication(int *numbers, int low, int high)
 		{
 			return (1);
 		}
-
 		i++;
 	}
 	return (0);
@@ -59,7 +44,6 @@ int	check_sorted(int *numbers, int len)
 	return (1);
 }
 
-#include <stdio.h>
 int	*check_error(int argc, char *argv[])
 {
 	int		i;
@@ -75,10 +59,7 @@ int	*check_error(int argc, char *argv[])
 	{
 		numbers[i] = ut_atoi_with_error(*argv, &error);
 		if (error)
-		{
-			free(numbers);
-			return (NULL);
-		}
+			return (free(numbers), NULL);
 		i++;
 		argv++;
 	}

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 19:17:08 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/26 20:15:47 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 22:56:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**ut_produce_double_p(const char *s1, const char *s2)
 		return (free(result_str), NULL);
 	result_str[i] = ft_strdup(s2);
 	if (result_str[i++] == NULL)
-		return (free(*result_str),free(result_str),  NULL);
+		return (free(*result_str), free(result_str), NULL);
 	result_str[i] = NULL;
 	return (result_str);
 }

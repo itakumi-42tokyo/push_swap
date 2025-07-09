@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:45:49 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 18:50:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 22:52:45 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 static void	rotate_up_noprint(t_root *stack)
 {
+	t_list	*first;
+	t_list	*last;
+
 	if (stack == NULL || stack->node_len < 2)
 		return ;
-	t_list *first = stack->sentinel->next;
-	t_list *last = stack->sentinel->prev;
+	first = stack->sentinel->next;
+	last = stack->sentinel->prev;
 	stack->sentinel->next = first->next;
 	first->next->prev = stack->sentinel;
 	first->next = stack->sentinel;
@@ -29,10 +32,13 @@ static void	rotate_up_noprint(t_root *stack)
 
 static void	rotate_down_noprint(t_root *stack)
 {
+	t_list	*first;
+	t_list	*last;
+
 	if (stack == NULL || stack->node_len < 2)
 		return ;
-	t_list *first = stack->sentinel->next;
-	t_list *last = stack->sentinel->prev;
+	first = stack->sentinel->next;
+	last = stack->sentinel->prev;
 	stack->sentinel->prev = last->prev;
 	last->prev->next = stack->sentinel;
 	last->prev = stack->sentinel;

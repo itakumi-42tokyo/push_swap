@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 18:40:44 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 18:41:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 22:53:55 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	sb(t_root *stack_b)
 // === internal helpers that DO NOT print ===
 static void	swap_first_two(t_root *stack)
 {
-	if (stack == NULL || stack->node_len < 2)
-		return ;
 	int		 tmp;
 	t_list	*first;
+	if (stack == NULL || stack->node_len < 2)
+		return ;
 
 	first = stack->sentinel->next;
 	tmp = first->number;

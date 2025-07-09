@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 18:17:54 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 23:26:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,6 @@ int		check_duplication(int *numbers, int low, int high);
 void	exit_and_errormsg(void);
 t_singl	*sort_under_five(int argc, t_root *stack_a);
 t_singl	*sort_over_six(int argc, t_root *stack_a);
-int		ut_top_node_ismin(t_root *linked_list);
-int		ut_top_node_ismax(t_root *linked_list);
-int		ut_top_node_ismid(t_root *linked_list);
-int		ut_tail_node_ismax(t_root *linked_list);
-int		ut_tail_node_ismin(t_root *linked_list);
-int		ut_tail_node_ismid(t_root *linked_list);
 int		*ut_atoi_numbers(int argc, char *argv[]);
 int		ut_atoi_with_error(const char *nptr, bool *error);
 int		ut_issign(int c);
@@ -66,13 +60,20 @@ int		get_min(t_root *linked_list);
 int		get_prev_number(int now, t_root *linked_list);
 int		get_next_number(int limit, t_root *linked_list);
 int		get_target_index(t_root *linked_list, int target);
+int		fill_numbers_from_list(t_root *linked_list, int *numbers);
 int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
 int		find_lis(int argc, t_root *stack_a);
 int		check_sorted(int *numbers, int len);
 t_singl	*sort_three(t_root *stack_a, t_singl **singl);
+void	init_min_cost(t_cost **min_cost);
+void	init_cost(t_cost **cost);
+int		compere_cost(t_cost *cost1, t_cost *cost2);
+void	minimize_cost(t_cost **cost);
+void	copy_cost(t_cost *cost, t_cost **min_cost);
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f);
+void	count_cost_process(t_root *stack_a, t_cost **min_cost);
 t_singl	*sort_best_move(int argc, t_root *stack_a);
 void	insert_sorted_pb(t_root *stack_a, t_root *stack_b);
 

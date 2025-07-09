@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_best_move.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: o3-ai                                         +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 09:40:00 by o3-ai             #+#    #+#             */
-/*   Updated: 2025/07/06 09:40:00 by o3-ai            ###   ########.fr       */
+/*   Created: 2025/07/09 22:27:43 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/09 22:27:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,4 @@ t_singl *sort_best_move(int argc, t_root *stack_a)
 
 	cdll_clear(&stack_b, cdll_delone);
 	return (NULL);
-} 
+}

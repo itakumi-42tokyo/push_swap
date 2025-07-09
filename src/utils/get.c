@@ -6,21 +6,24 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 16:02:37 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 18:40:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/09 22:57:55 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "list.h"
 
+// Find index of target number in the list
 int	get_target_index(t_root *linked_list, int target)
 {
 	int		index;
 	t_list	*cur;
 
+	if (linked_list == NULL || linked_list->sentinel == NULL)
+		return (-1);
 	index = 0;
-	cur = (linked_list->sentinel)->next;
-	while (cur != (linked_list->sentinel))
+	cur = linked_list->sentinel->next;
+	while (cur != linked_list->sentinel)
 	{
 		if (cur->number == target)
 			return (index);
@@ -30,77 +33,68 @@ int	get_target_index(t_root *linked_list, int target)
 	return (-1);
 }
 
-// limit以上のmax値を探そう。　差をとって、一番近いものを採用しよう。
-//　差が１しかないので、どう判別しよう。　
-// これらをソートしてから、より大きくなったものの初めを返せば良いな。
-
-int	get_next_number(int	now, t_root *linked_list)
+// Find first number greater than 'now' in sorted array
+int	find_next_in_sorted(int *numbers, int len, int now)
 {
-	int		i;
-	int		*numbers;
-	int		next_number;
-	t_list	*cur;
+	int	i;
 
-	if (linked_list == NULL || linked_list->sentinel == NULL)
-		return (-1);// 審議
-	if (linked_list->node_len == 0)
-		return (-1);
-	// 一度、ソートしてから、やりたいが数字を取り出す必要がある。
-	cur = linked_list->sentinel->next;
-	numbers = malloc(sizeof(int) * linked_list->node_len);
-	if (numbers == NULL)
-		return (-1);
 	i = 0;
-	while (cur != linked_list->sentinel)
-	{
-		numbers[i++] = cur->number;
-		cur = cur->next;
-	}
-	quick_sort(numbers, 0, linked_list->node_len - 1);
-	i = 0;
-	while (i < linked_list->node_len)
+	while (i < len)
 	{
 		if (numbers[i] > now)
-			return (next_number = numbers[i], free(numbers), next_number);
+			return (numbers[i]);
 		i++;
 	}
-	next_number = numbers[0];
+	return (numbers[0]);
+}
+
+// Find last number smaller than 'now' in sorted array
+int	find_prev_in_sorted(int *numbers, int len, int now)
+{
+	int	i;
+
+	i = len - 1;
+	while (i >= 0)
+	{
+		if (numbers[i] < now)
+			return (numbers[i]);
+		i--;
+	}
+	return (numbers[len - 1]);
+}
+
+// Find next bigger number than 'now'; if not found, return smallest
+int	get_next_number(int now, t_root *linked_list)
+{
+	int		*numbers;
+	int		next_number;
+
+	if (!linked_list || !linked_list->sentinel || linked_list->node_len == 0)
+		return (-1);
+	numbers = malloc(sizeof(int) * linked_list->node_len);
+	if (!numbers)
+		return (-1);
+	fill_numbers_from_list(linked_list, numbers);
+	quick_sort(numbers, 0, linked_list->node_len - 1);
+	next_number = find_next_in_sorted(numbers, linked_list->node_len, now);
 	free(numbers);
 	return (next_number);
 }
 
-// // pa専用
+// Find previous smaller number than 'now'; if not found, return biggest
 int	get_prev_number(int now, t_root *linked_list)
 {
-	int		i;
 	int		*numbers;
 	int		prev_number;
-	t_list	*cur;
 
-	if (linked_list == NULL || linked_list->sentinel == NULL)
-		return (-1);// 審議
-	if (linked_list->node_len == 0)
+	if (!linked_list || !linked_list->sentinel || linked_list->node_len == 0)
 		return (-1);
-	// 一度、ソートしてから、やりたいが数字を取り出す必要がある。
-	cur = linked_list->sentinel->next;
 	numbers = malloc(sizeof(int) * linked_list->node_len);
-	if (numbers == NULL)
+	if (!numbers)
 		return (-1);
-	i = 0;
-	while (cur != linked_list->sentinel)
-	{
-		numbers[i++] = cur->number;
-		cur = cur->next;
-	}
+	fill_numbers_from_list(linked_list, numbers);
 	quick_sort(numbers, 0, linked_list->node_len - 1);
-	i = linked_list->node_len - 1;
-	while (i >= 0)
-	{
-		if (numbers[i] < now)
-			return (prev_number = numbers[i], free(numbers), prev_number);
-		i--;
-	}
-	prev_number = numbers[linked_list->node_len - 1];
+	prev_number = find_prev_in_sorted(numbers, linked_list->node_len, now);
 	free(numbers);
 	return (prev_number);
 }
