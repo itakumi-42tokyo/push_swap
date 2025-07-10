@@ -56,7 +56,7 @@ static void	merge_from_b_cost_based(t_root *stack_a, t_root *stack_b)
 /*
 ** Fallback sorting method using cost-based push/merge
 */
-t_singl	*sort_best_move(int argc, t_root *stack_a)
+int		 sort_best_move(int argc, t_root *stack_a)
 {
 	int		to_push;
 	int		index;
@@ -65,7 +65,7 @@ t_singl	*sort_best_move(int argc, t_root *stack_a)
 	(void)argc;
 	stack_b = ut_create_root();
 	if (!stack_b)
-		return (NULL);
+		return (-1);
 	to_push = stack_a->node_len - 3;
 	push_to_b_cost_based(stack_a, stack_b, to_push);
 	sort_three(stack_a, NULL);
@@ -83,5 +83,5 @@ t_singl	*sort_best_move(int argc, t_root *stack_a)
 			rra(stack_a);
 	}
 	cdll_clear(&stack_b, cdll_delone);
-	return (NULL);
+	return (0);
 }

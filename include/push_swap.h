@@ -47,8 +47,8 @@ int		binary_search(int numbers[], int target, int len);
 int		*check_error(int argc, char *argv[]);
 int		check_duplication(int *numbers, int low, int high);
 void	exit_and_errormsg(void);
-t_singl	*sort_under_five(int argc, t_root *stack_a);
-t_singl	*sort_over_six(int argc, t_root *stack_a);
+int				 sort_under_five(int argc, t_root *stack_a);
+int				 sort_over_six(int argc, t_root *stack_a);
 int		*ut_atoi_numbers(int argc, char *argv[]);
 int		ut_atoi_with_error(const char *nptr, bool *error);
 int		ut_issign(int c);
@@ -75,7 +75,7 @@ void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f);
 void	count_cost_process(t_root *stack_a, t_cost **min_cost);
-t_singl	*sort_best_move(int argc, t_root *stack_a);
+int			 sort_best_move(int argc, t_root *stack_a);
 void	insert_sorted_pb(t_root *stack_a, t_root *stack_b);
 
 #endif
