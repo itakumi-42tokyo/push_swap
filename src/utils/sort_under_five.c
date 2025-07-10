@@ -20,7 +20,6 @@
 static t_singl	*sort_two(t_root *stack_a, t_singl **singl)
 {
 	sa(stack_a);
-	// lst_all(singl, "sa");
 	return (*singl);
 }
 
@@ -67,7 +66,6 @@ static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 	if (check_sorted_s(stack_a) == 1)
 		return (*singl);
 	pb(stack_a, stack_b);
-	// lst_all(singl, "pb");
 	sort_three(stack_a, singl);
 	pa(stack_a, stack_b);
 	return (*singl);

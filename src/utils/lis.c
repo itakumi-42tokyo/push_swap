@@ -35,87 +35,116 @@ int	*format_array(t_root *root)
 	return (arr);
 }
 
-int lis(int arr[], int n, int result[])
+// Initialize dp and prev arrays for LIS computation
+static void init_lis_arrays(int n, int dp[], int prev[])
 {
-	int	i;
-	int	j;
-	int	k;
-	int	max_len;
-	int	max_idx;
-	int	prev[500];
-	int	dp[500];
-
-	i = 0;
-	while (i < n)
-	{
-		prev[i] = -1;
-		dp[i] = 1;
-		i++;
-	}
-	i = 1;
-	while (i < n)
-	{
-		j = 0;
-		while (j < i)
-		{
-			if (arr[i] > arr[j] && dp[i] < dp[j] + 1)
-			{
-				dp[i] = dp[j] + 1;
-				prev[i] = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	max_len = 0;
-	max_idx = -1;
-	while (i < n)
-	{
-		if (dp[i] > max_len)
-		{
-			max_len = dp[i];
-			max_idx = i;
-		}
-		i++;
-	}
-	k = max_len - 1;
-	while (max_idx != -1)
-	{
-		result[k--] = arr[max_idx];
-		max_idx = prev[max_idx];
-	}
-	return (max_len);
+    int i = 0;
+    while (i < n)
+    {
+        dp[i] = 1;
+        prev[i] = -1;
+        i++;
+    }
 }
 
-int	find_lis(int argc, t_root *stack_a)
+// Compute LIS dp values and predecessor indices
+static void compute_lis_dp(int arr[], int n, int dp[], int prev[])
 {
-	int		i;
-	int		*arr;
-	int		*result;
-	t_list	*cur;
+    int i = 1;
+    while (i < n)
+    {
+        int j = 0;
+        while (j < i)
+        {
+            if (arr[i] > arr[j] && dp[i] < dp[j] + 1)
+            {
+                dp[i] = dp[j] + 1;
+                prev[i] = j;
+            }
+            j++;
+        }
+        i++;
+    }
+}
 
-	arr = format_array(stack_a);
-	if (!arr)
-		return (0);
-	result = malloc(sizeof(int) * 500);
-	if (!result)
-		return (free(arr), 0);
-	int	max_len = lis(arr, argc - 1, result);
-	cur = stack_a->sentinel->next;
-	while (cur != stack_a->sentinel)
-	{
-		i = 0;
-		while (i < max_len)
-		{
-			if (cur->number == result[i])
-			{
-				cur->lis = true;
-				stack_a->lis_count += 1;
-			}
-			i++;
-		}
-		cur = cur->next;
-	}
-	return (free(arr), free(result), 1);
+// Find the maximum LIS length and its ending index
+static int find_lis_max(int dp[], int n, int *max_len, int *max_idx)
+{
+    int i = 0;
+    *max_len = 0;
+    *max_idx = -1;
+    while (i < n)
+    {
+        if (dp[i] > *max_len)
+        {
+            *max_len = dp[i];
+            *max_idx = i;
+        }
+        i++;
+    }
+    return (*max_len);
+}
+
+// Reconstruct the LIS into the result array
+static void construct_lis(int arr[], int prev[], int max_idx, int max_len, int result[])
+{
+    int k = max_len - 1;
+    while (max_idx != -1)
+    {
+        result[k--] = arr[max_idx];
+        max_idx = prev[max_idx];
+    }
+}
+
+// Main LIS function under 25 lines
+int lis(int arr[], int n, int result[])
+{
+    int dp[500];
+    int prev[500];
+    int max_len;
+    int max_idx;
+
+    init_lis_arrays(n, dp, prev);
+    compute_lis_dp(arr, n, dp, prev);
+    find_lis_max(dp, n, &max_len, &max_idx);
+    construct_lis(arr, prev, max_idx, max_len, result);
+    return (max_len);
+}
+
+// Helper to mark nodes belonging to the LIS
+static void mark_lis_nodes(t_root *stack_a, int result[], int max_len)
+{
+    int i;
+    t_list *cur = stack_a->sentinel->next;
+
+    while (cur != stack_a->sentinel)
+    {
+        i = 0;
+        while (i < max_len)
+        {
+            if (cur->number == result[i])
+            {
+                cur->lis = true;
+                stack_a->lis_count++;
+            }
+            i++;
+        }
+        cur = cur->next;
+    }
+}
+
+// Refactored find_lis under 25 lines
+int find_lis(int argc, t_root *stack_a)
+{
+    int *arr;
+    int result[500];
+    int max_len;
+
+    arr = format_array(stack_a);
+    if (!arr)
+        return (0);
+    max_len = lis(arr, argc - 1, result);
+    mark_lis_nodes(stack_a, result, max_len);
+    free(arr);
+    return (1);
 }
