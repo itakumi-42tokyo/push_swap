@@ -6,14 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:05 by itakumi           #+#    #+#             */
-/*   Updated: 2025/06/30 17:51:03 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 19:18:05 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "list.h"
-
-#include <stdio.h>
 
 /*
 ** Sort two elements by swapping if needed
@@ -27,11 +25,10 @@ static void	sort_two(t_root *stack_a)
 ** Sort three elements using optimal rotation and swap
 ** Places max element in correct position first, then swaps if needed
 */
-t_singl	*sort_three(t_root *stack_a, t_singl **singl)
+int	sort_three(t_root *stack_a)
 {
 	int	max;
 
-	(void)singl;
 	max = get_max(stack_a);
 	if (max == (stack_a->sentinel)->next->number)
 		ra(stack_a);
@@ -39,7 +36,7 @@ t_singl	*sort_three(t_root *stack_a, t_singl **singl)
 		rra(stack_a);
 	if ((stack_a->sentinel)->next->number > (stack_a->sentinel)->next->next->number)
 		sa(stack_a);
-	return (NULL);
+	return (0);
 }
 
 /*
@@ -51,7 +48,7 @@ static void	sort_four(t_root *stack_a, t_root *stack_b)
 	if (check_sorted_s(stack_a) == 1)
 		return ;
 	pb(stack_a, stack_b);
-	sort_three(stack_a, NULL);
+	sort_three(stack_a);
 	pa(stack_a, stack_b);
 }
 
@@ -71,7 +68,7 @@ static void	push_two_smallest(t_root *stack_a, t_root *stack_b)
 */
 static void	merge_three_and_push_back(t_root *stack_a, t_root *stack_b)
 {
-	sort_three(stack_a, NULL);
+	sort_three(stack_a);
 	pa(stack_a, stack_b);
 	pa(stack_a, stack_b);
 }
@@ -99,7 +96,7 @@ int		 sort_under_five(int argc, t_root *stack_a)
 	if (argc == 3)
 		sort_two(stack_a);
 	else if (argc == 4)
-		sort_three(stack_a, NULL);
+		sort_three(stack_a);
 	else if (argc == 5)
 		sort_four(stack_a, stack_b);
 	else

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 18:00:11 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 18:00:11 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 19:25:47 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		 sort_best_move(int argc, t_root *stack_a)
 		return (-1);
 	to_push = stack_a->node_len - 3;
 	push_to_b_cost_based(stack_a, stack_b, to_push);
-	sort_three(stack_a, NULL);
+	sort_three(stack_a);
 	merge_from_b_cost_based(stack_a, stack_b);
 	index = get_target_index(stack_a, get_min(stack_a));
 	if (index <= stack_a->node_len / 2)

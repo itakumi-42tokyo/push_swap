@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 23:26:16 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 19:17:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int		binary_search(int numbers[], int target, int len);
 int		*check_error(int argc, char *argv[]);
 int		check_duplication(int *numbers, int low, int high);
 void	exit_and_errormsg(void);
-int				 sort_under_five(int argc, t_root *stack_a);
-int				 sort_over_six(int argc, t_root *stack_a);
+int		sort_under_five(int argc, t_root *stack_a);
+int		sort_over_six(int argc, t_root *stack_a);
 int		*ut_atoi_numbers(int argc, char *argv[]);
 int		ut_atoi_with_error(const char *nptr, bool *error);
 int		ut_issign(int c);
@@ -65,7 +65,7 @@ int		check_sorted_s(t_root *stack);
 void	put_min_top(t_root *stack_a);
 int		find_lis(int argc, t_root *stack_a);
 int		check_sorted(int *numbers, int len);
-t_singl	*sort_three(t_root *stack_a, t_singl **singl);
+int		sort_three(t_root *stack_a);
 void	init_min_cost(t_cost **min_cost);
 void	init_cost(t_cost **cost);
 int		compere_cost(t_cost *cost1, t_cost *cost2);
