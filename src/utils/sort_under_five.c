@@ -14,26 +14,20 @@
 #include "list.h"
 
 #include <stdio.h>
-// ２は確定で、並び替えが発生しないといけないのか。
-//  sort系は操作＋操作文字の代入の役割を持っている。
 
+/*
+** Sort two elements by swapping if needed
+*/
 static t_singl	*sort_two(t_root *stack_a, t_singl **singl)
 {
 	sa(stack_a);
 	return (*singl);
 }
 
-// すべてのソートを試して、最後に確認する方法を取るのかな
-// そのためにすべての操作を記録するための領域が必要かな。
-// ソート完了が確認でき次第、mallocしてリターンするべき
-// 検証するたびに、値が変更されてしまうのが面倒。
-
-// 座標圧縮するのはこのためか
-
-// 読み取り専用領域を大量に使用してもよいのか？
-
-// 比較する数値は必ず０１２とは限らなかった。
-
+/*
+** Sort three elements using optimal rotation and swap
+** Places max element in correct position first, then swaps if needed
+*/
 t_singl	*sort_three(t_root *stack_a, t_singl **singl)
 {
 	int	max;
@@ -49,17 +43,9 @@ t_singl	*sort_three(t_root *stack_a, t_singl **singl)
 	return (NULL);
 }
 
-// stack_bを用意して、入れ込んでいく。
-// オペレーションの文字列も構造体にしたほうが管理しやすい気がしてきた。
-// sort_threeの引数にt_singlを入れたほうが良いのか？
-// sorted系には必ずその要素数の物しか引数を受け付けないという風になっている
-// 返り値は何にしよう。
-
-// どこにstack_bの変数を入れるか決めないといけないな。
-// 上から小さい順になっているので，入れるために
-
-// そもそも操作は実行した瞬間に出力すればよいのか。
-
+/*
+** Sort four elements by pushing min to B, sorting 3, then merging
+*/
 static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
 	put_min_top(stack_a);
@@ -71,13 +57,9 @@ static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 	return (*singl);
 }
 
-// 今後sorted_over_sixと組み合わせる可能性があるので，拡張性を持たせるために，操作文字列リストも受け取るようにしたほうが良いな。
-// 一旦，何も考えずに，最小値２つをプッシュしてみる。
-// ２番に最小なものをまず見つける。
-// paするときに、どのように入れるかが鍵になってくる。
-// 一つ前の数字を戦闘に持っていきたいから
-// すでにソートされたものに対しては、index でraかrraかを判断するしかないのか？
-
+/*
+** Push two smallest elements to stack B
+*/
 static void	push_two_smallest(t_root *stack_a, t_root *stack_b)
 {
 	put_min_top(stack_a);
@@ -86,6 +68,9 @@ static void	push_two_smallest(t_root *stack_a, t_root *stack_b)
 	pb(stack_a, stack_b);
 }
 
+/*
+** Sort remaining three elements and push back from B
+*/
 static void	merge_three_and_push_back(t_root *stack_a, t_root *stack_b)
 {
 	sort_three(stack_a, NULL);
@@ -93,6 +78,9 @@ static void	merge_three_and_push_back(t_root *stack_a, t_root *stack_b)
 	pa(stack_a, stack_b);
 }
 
+/*
+** Sort five elements by pushing two smallest to B, sorting 3, then merging
+*/
 static t_singl	*sort_five(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
 	push_two_smallest(stack_a, stack_b);
@@ -100,6 +88,10 @@ static t_singl	*sort_five(t_root *stack_a, t_root *stack_b, t_singl **singl)
 	return (*singl);
 }
 
+/*
+** Main dispatcher for sorting 2-5 elements
+** Selects appropriate sorting algorithm based on element count
+*/
 t_singl	*sort_under_five(int argc, t_root *stack_a)
 {
 	t_root	*stack_b;

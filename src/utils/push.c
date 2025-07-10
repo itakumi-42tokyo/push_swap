@@ -1,66 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   base_operation.c                                   :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 15:06:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 18:43:23 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/09 22:19:27 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/09 22:51:19 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "list.h"
 
-// pushは移動が起きるたびにfreeするべきか？
-// そうしないと、循環リストが成り立たなくなってしまう。というか面倒
-// mallocできなかったら、すべての処理を終了しよう。
-
-int	pa(t_root *stack_a, t_root *stack_b)
+/*
+** Push top element from stack B to stack A
+*/
+void	pa(t_root *stack_a, t_root *stack_b)
 {
-	int		tmp;
-	bool	lis_f;
-	t_list	*first_node_b;
-	t_list	*new_node;
+	t_list	*first;
 
-	if (stack_a == NULL || stack_b == NULL)
-		return (0);
-	first_node_b = (stack_b->sentinel)->next;
-	tmp = first_node_b->number;
-	first_node_b->next->prev = stack_b->sentinel;
-	stack_b->sentinel->next = first_node_b->next;
-	lis_f = first_node_b->lis;
-	free(first_node_b);
-	new_node = ut_create_node(stack_a, tmp, lis_f);
-	if (new_node == NULL)
-		return (-1);
-	stack_a->node_len += 1;
-	stack_b->node_len -= 1;
+	if (stack_b == NULL || stack_b->node_len == 0)
+		return ;
+	first = stack_b->sentinel->next;
+	stack_b->sentinel->next = first->next;
+	first->next->prev = stack_b->sentinel;
+	stack_b->node_len--;
+	first->next = stack_a->sentinel->next;
+	first->prev = stack_a->sentinel;
+	stack_a->sentinel->next->prev = first;
+	stack_a->sentinel->next = first;
+	stack_a->node_len++;
 	write(1, "pa\n", 3);
-	return (0);
 }
 
-int	pb(t_root *stack_a, t_root *stack_b)
+/*
+** Push top element from stack A to stack B
+*/
+void	pb(t_root *stack_a, t_root *stack_b)
 {
-	int		tmp;
-	bool	lis_f;
-	t_list	*first_node_a;
-	t_list	*new_node;
+	t_list	*first;
 
-	if (stack_a == NULL || stack_b == NULL)
-		return (-1);
-	first_node_a = (stack_a->sentinel)->next;
-	tmp = first_node_a->number;
-	(first_node_a->next)->prev = stack_a->sentinel;
-	(stack_a->sentinel)->next = first_node_a->next;
-	lis_f = first_node_a->lis;
-	free(first_node_a);
-	new_node = ut_create_node(stack_b, tmp, lis_f);
-	if (new_node == NULL)
-		return (-1);
-	stack_b->node_len += 1;
-	stack_a->node_len -= 1;
+	if (stack_a == NULL || stack_a->node_len == 0)
+		return ;
+	first = stack_a->sentinel->next;
+	stack_a->sentinel->next = first->next;
+	first->next->prev = stack_a->sentinel;
+	stack_a->node_len--;
+	first->next = stack_b->sentinel->next;
+	first->prev = stack_b->sentinel;
+	stack_b->sentinel->next->prev = first;
+	stack_b->sentinel->next = first;
+	stack_b->node_len++;
 	write(1, "pb\n", 3);
-	return (0);
 }

@@ -33,8 +33,8 @@
 void	sa(t_root *stack_a);
 void	sb(t_root *stack_b);
 void	ss(t_root *stack_a, t_root *stack_b);
-int		pa(t_root *stack_a, t_root *stack_b);
-int		pb(t_root *stack_a, t_root *stack_b);
+void	pa(t_root *stack_a, t_root *stack_b);
+void	pb(t_root *stack_a, t_root *stack_b);
 void	ra(t_root *stack_a);
 void	rb(t_root *stack_b);
 void	rr(t_root *stack_a, t_root *stack_b);

@@ -26,7 +26,10 @@ void	print_node(t_singl *singl)
 	}
 }
 
-// これはリストの長さから計算する必要がある
+/*
+** Move minimum value to top of stack using optimal rotation
+** Calculates whether ra or rra is faster based on position
+*/
 void	put_min_top(t_root *stack_a)
 {
 	int	min;
@@ -50,8 +53,10 @@ void	put_min_top(t_root *stack_a)
 	}
 }
 
-// ソートされていいるかどうかを確認する関数
-
+/*
+** Check if stack is sorted in ascending order
+** Returns 1 if sorted, 0 otherwise
+*/
 int	check_sorted_s(t_root *stack)
 {
 	t_list	*cur;

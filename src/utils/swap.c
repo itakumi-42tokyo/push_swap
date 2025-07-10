@@ -13,7 +13,9 @@
 #include "push_swap.h"
 #include "list.h"
 
-// 構造体の中身を書き換えたいときは、別にシングルポインタで構わないよ。
+/*
+** Swap first two elements of stack A
+*/
 void	sa(t_root *stack_a)
 {
 	int		tmp;
@@ -26,7 +28,9 @@ void	sa(t_root *stack_a)
 	first_node->next->number = tmp;
 }
 
-// 方針としては、変更するときのみアドレスを渡す感じで、
+/*
+** Swap first two elements of stack B
+*/
 void	sb(t_root *stack_b)
 {
 	int		tmp;
@@ -39,20 +43,25 @@ void	sb(t_root *stack_b)
 	first_node->next->number = tmp;
 }
 
-// === internal helpers that DO NOT print ===
+/*
+** Internal helper that swaps without printing
+*/
 static void	swap_first_two(t_root *stack)
 {
-	int		 tmp;
+	int		tmp;
 	t_list	*first;
+
 	if (stack == NULL || stack->node_len < 2)
 		return ;
-
 	first = stack->sentinel->next;
 	tmp = first->number;
 	first->number = first->next->number;
 	first->next->number = tmp;
 }
 
+/*
+** Swap first two elements of both stacks
+*/
 void	ss(t_root *stack_a, t_root *stack_b)
 {
 	swap_first_two(stack_a);

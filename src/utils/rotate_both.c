@@ -5,15 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 18:45:49 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 22:52:45 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/09 18:41:48 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/09 18:48:29 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "list.h"
 
-static void	rotate_up_noprint(t_root *stack)
+/*
+** Internal rotate helper without printing
+*/
+static void	rotate_internal(t_root *stack)
 {
 	t_list	*first;
 	t_list	*last;
@@ -30,7 +33,10 @@ static void	rotate_up_noprint(t_root *stack)
 	stack->sentinel->prev = first;
 }
 
-static void	rotate_down_noprint(t_root *stack)
+/*
+** Internal reverse rotate helper without printing
+*/
+static void	reverse_rotate_internal(t_root *stack)
 {
 	t_list	*first;
 	t_list	*last;
@@ -47,16 +53,22 @@ static void	rotate_down_noprint(t_root *stack)
 	stack->sentinel->next = last;
 }
 
+/*
+** Rotate both stacks upward simultaneously
+*/
 void	rr(t_root *stack_a, t_root *stack_b)
 {
-	rotate_up_noprint(stack_a);
-	rotate_up_noprint(stack_b);
+	rotate_internal(stack_a);
+	rotate_internal(stack_b);
 	write(1, "rr\n", 3);
 }
 
+/*
+** Reverse rotate both stacks simultaneously
+*/
 void	rrr(t_root *stack_a, t_root *stack_b)
 {
-	rotate_down_noprint(stack_a);
-	rotate_down_noprint(stack_b);
+	reverse_rotate_internal(stack_a);
+	reverse_rotate_internal(stack_b);
 	write(1, "rrr\n", 4);
 }

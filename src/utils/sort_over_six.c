@@ -14,7 +14,6 @@
 #include "list.h"
 
 #include <stdio.h>
-// 連番であるといいこと。　中央値を取りやすい。
 
 void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b)
 {
@@ -32,40 +31,54 @@ void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b)
 		rrr(stack_a, stack_b);
 }
 
-// ノードを消すということは、その分初期化をしなければいけない。
-// lisが３つより少なければ、しょうがないので、３つでソートする道を選ぶ仕様にしよう。
+/*
+** Push non-LIS elements from stack A to stack B
+** Uses cost calculation to find optimal element to push
+*/
 static void	push_non_lis_to_b(t_root *stack_a, t_root *stack_b)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 	t_cost	*cost;
 
+	i = 0;
 	count = stack_a->node_len - stack_a->lis_count;
-	for (i = 0; i < count; i++)
+	while (i < count)
 	{
 		cost = count_cost_pb(stack_a, stack_b, true);
 		carry_out_cost(cost, stack_a, stack_b);
 		pb(stack_a, stack_b);
 		free(cost);
+		i++;
 	}
 }
 
+/*
+** Merge elements back from stack B to stack A
+** Uses cost calculation to find optimal position for each element
+*/
 static void	merge_b_to_a(t_root *stack_a, t_root *stack_b)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 	t_cost	*cost;
 
+	i = 0;
 	len = stack_b->node_len;
-	for (i = 0; i < len; i++)
+	while (i < len)
 	{
 		cost = count_cost_pa(stack_a, stack_b);
 		carry_out_cost(cost, stack_a, stack_b);
 		pa(stack_a, stack_b);
 		free(cost);
+		i++;
 	}
 }
 
+/*
+** Rotate stack A to put the minimum value (0) at the top
+** Chooses optimal rotation direction based on position
+*/
 static void	rotate_min_to_top(t_root *stack_a)
 {
 	int	index;
@@ -79,6 +92,11 @@ static void	rotate_min_to_top(t_root *stack_a)
 			rra(stack_a);
 }
 
+/*
+** Main sorting function for 6+ elements
+** Uses LIS (Longest Increasing Subsequence) optimization
+** Falls back to best_move algorithm if LIS is too small
+*/
 t_singl	*sort_over_six(int argc, t_root *stack_a)
 {
 	(void)argc;
@@ -87,18 +105,15 @@ t_singl	*sort_over_six(int argc, t_root *stack_a)
 	stack_b = ut_create_root();
 	if (stack_b == NULL)
 		return (NULL);
-
 	find_lis(argc, stack_a);
 	if (stack_a->lis_count < stack_a->node_len / 6)
 	{
 		cdll_clear(&stack_b, cdll_delone);
 		return (sort_best_move(argc, stack_a));
 	}
-
 	push_non_lis_to_b(stack_a, stack_b);
 	merge_b_to_a(stack_a, stack_b);
 	rotate_min_to_top(stack_a);
-
 	cdll_clear(&stack_b, cdll_delone);
 	return (NULL);
 }
