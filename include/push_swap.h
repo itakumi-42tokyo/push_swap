@@ -71,6 +71,7 @@ void	init_cost(t_cost **cost);
 int		compere_cost(t_cost *cost1, t_cost *cost2);
 void	minimize_cost(t_cost **cost);
 void	copy_cost(t_cost *cost, t_cost **min_cost);
+void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f);
 void	count_cost_process(t_root *stack_a, t_cost **min_cost);

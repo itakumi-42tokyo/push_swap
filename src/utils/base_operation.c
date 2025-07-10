@@ -29,22 +29,25 @@ void	print_node(t_singl *singl)
 // これはリストの長さから計算する必要がある
 void	put_min_top(t_root *stack_a)
 {
-	int		min;
-	int		index;
+	int	min;
+	int	index;
+	int	len;
+	int	rotations;
 
 	min = get_min(stack_a);
 	index = get_target_index(stack_a, min);
-	if (index == 0)
-		return ;
-	else if (index == 1)
-		sa(stack_a);
-	else if (index == 2)
+	len = stack_a->node_len;
+	if (index <= len / 2)
 	{
-		ra(stack_a);
-		ra(stack_a);
+		while (index-- > 0)
+			ra(stack_a);
 	}
-	else if (index == 3)
-		rra(stack_a);
+	else
+	{
+		rotations = len - index;
+		while (rotations-- > 0)
+			rra(stack_a);
+	}
 }
 
 // ソートされていいるかどうかを確認する関数

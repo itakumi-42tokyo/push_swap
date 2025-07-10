@@ -59,6 +59,7 @@ t_root	*ut_create_root(void)
 	if (linked_list == NULL)
 		return (NULL);
 	linked_list->node_len = 0;
+	linked_list->lis_count = 0;
 	linked_list->sentinel = malloc(sizeof(t_list));
 	if (linked_list->sentinel == NULL)
 	{

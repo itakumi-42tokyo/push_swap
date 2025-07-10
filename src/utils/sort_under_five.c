@@ -35,55 +35,6 @@ static t_singl	*sort_two(t_root *stack_a, t_singl **singl)
 
 // 比較する数値は必ず０１２とは限らなかった。
 
-// t_singl	*sort_three(t_root *stack_a, t_singl **singl)
-// {
-// 	if (ut_top_node_ismin(stack_a) && ut_tail_node_ismid(stack_a))
-// 	{
-// 		rra(stack_a);
-// 		sa(stack_a);
-// 		lst_all(singl, "rra");
-// 		lst_all(singl, "sa");// mallocに失敗したかどうかがわからない。
-// 		if (*singl == NULL)
-// 			return (NULL);
-// 		return (*singl);
-// 	}
-// 	if (ut_top_node_ismid(stack_a) && ut_tail_node_ismax(stack_a))
-// 	{
-// 		sa(stack_a);
-// 		lst_all(singl, "sa");
-// 		if (*singl == NULL)
-// 			return (NULL);
-// 		return (*singl);
-// 	}
-// 	if (ut_top_node_ismid(stack_a) && ut_tail_node_ismin(stack_a))
-// 	{
-// 		rra(stack_a);
-// 		lst_all(singl, "rra");
-// 		if (*singl == NULL)
-// 			return (NULL);
-// 		return (*singl);
-// 	}
-// 	if (ut_top_node_ismax(stack_a) && ut_tail_node_ismin(stack_a))
-// 	{
-// 		sa(stack_a);
-// 		rra(stack_a);
-// 		lst_all(singl, "sa");
-// 		lst_all(singl, "rra");
-// 		if (*singl == NULL)
-// 			return (NULL);
-// 		return (*singl);
-// 	}
-// 	if (ut_top_node_ismax(stack_a) && ut_tail_node_ismid(stack_a))
-// 	{
-// 		ra(stack_a);
-// 		lst_all(singl, "ra");
-// 		if (*singl == NULL)
-// 			return (NULL);
-// 		return (*singl);
-// 	}
-// 	return (NULL);
-// }
-
 t_singl	*sort_three(t_root *stack_a, t_singl **singl)
 {
 	int	max;
@@ -129,59 +80,25 @@ static t_singl	*sort_four(t_root *stack_a, t_root *stack_b, t_singl **singl)
 // 一つ前の数字を戦闘に持っていきたいから
 // すでにソートされたものに対しては、index でraかrraかを判断するしかないのか？
 
+static void	push_two_smallest(t_root *stack_a, t_root *stack_b)
+{
+	put_min_top(stack_a);
+	pb(stack_a, stack_b);
+	put_min_top(stack_a);
+	pb(stack_a, stack_b);
+}
+
+static void	merge_three_and_push_back(t_root *stack_a, t_root *stack_b)
+{
+	sort_three(stack_a, NULL);
+	pa(stack_a, stack_b);
+	pa(stack_a, stack_b);
+}
+
 static t_singl	*sort_five(t_root *stack_a, t_root *stack_b, t_singl **singl)
 {
-	int		target;
-	int		index;
-
-	pb(stack_a, stack_b);
-	pb(stack_a, stack_b);
-	sort_three(stack_a, singl);
-	// どこまでループするか定義しないといけない。
-	//　targetを超えない程度の最大値を求める関数を作ろう。
-	//　そして、rraとraのどちらが早いかを確認しないといけない。
-	// targetのインデックスが２より大きかったら、rra
-	// targetのインデックスが２以下だったらra
-	target = get_next_number(stack_b->sentinel->next->number, stack_a);
-	index = get_target_index(stack_a, target);
-	if (index < 2)
-	{
-		while (stack_a->sentinel->next->number != target)
-			ra(stack_a);
-		pa(stack_a, stack_b);
-	}
-	else
-	{
-		while (stack_a->sentinel->next->number != target)
-			rra(stack_a);
-		pa(stack_a, stack_b);
-	}
-	target = get_next_number(stack_b->sentinel->next->number, stack_a);
-	index = get_target_index(stack_a, target);
-	if (index < 2)
-	{
-		while (stack_a->sentinel->next->number != target)
-			ra(stack_a);
-		pa(stack_a, stack_b);
-	}
-	else
-	{
-		while (stack_a->sentinel->next->number != target)
-			rra(stack_a);
-		pa(stack_a, stack_b);
-	}
-	target = get_min(stack_a);
-	index = get_target_index(stack_a, target);
-	if (index < 2)
-	{
-		while (stack_a->sentinel->next->number != target)
-			ra(stack_a);
-	}
-	else
-	{
-		while (stack_a->sentinel->next->number != target)
-			rra(stack_a);
-	}
+	push_two_smallest(stack_a, stack_b);
+	merge_three_and_push_back(stack_a, stack_b);
 	return (*singl);
 }
 

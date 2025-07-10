@@ -30,35 +30,48 @@ t_singl *sort_best_move(int argc, t_root *stack_a)
 	int			i;
 	int			index;
 	t_root		*stack_b;
+	t_cost		*cost;
 
 	(void)argc;
 	stack_b = ut_create_root();
 	if (!stack_b)
 		return (NULL);
 
-	/* ---------- Step1 : keep 3 in A, push others to B (insertion sorted) ---------- */
+	/* ---------- Step1 : keep 3 in A, push others to B (cost-based) ---------- */
 	to_push = stack_a->node_len - 3;
 	i = 0;
 	while (i++ < to_push)
-		insert_sorted_pb(stack_a, stack_b);
+	{
+		cost = count_cost_pb(stack_a, stack_b, false);
+		carry_out_cost(cost, stack_a, stack_b);
+		pb(stack_a, stack_b);
+		free(cost);
+	}
+
 	/* ---------- Step2 : sort remaining three elements ---------- */
 	sort_three(stack_a, NULL);
 
-	/* ---------- Step3 : merge back (B is desc) ---------- */
+	/* ---------- Step3 : merge back using cost-based pa ---------- */
 	while (stack_b->node_len > 0)
 	{
+		cost = count_cost_pa(stack_a, stack_b);
+		carry_out_cost(cost, stack_a, stack_b);
 		pa(stack_a, stack_b);
-		ra(stack_a);
+		free(cost);
 	}
 
 	/* ---------- Step4 : rotate A so min is on top -------------- */
 	index = get_target_index(stack_a, 0);
 	if (index <= stack_a->node_len / 2)
+	{
 		while (stack_a->sentinel->next->number != 0)
 			ra(stack_a);
+	}
 	else
+	{
 		while (stack_a->sentinel->next->number != 0)
 			rra(stack_a);
+	}
 
 	cdll_clear(&stack_b, cdll_delone);
 	return (NULL);

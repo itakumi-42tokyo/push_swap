@@ -15,12 +15,12 @@
 #include "libft.h"
 
 static void	set_cost_for_pb(
-	t_root *stack_a, t_root *stack_b, t_cost *cost, int i)
+	t_root *stack_a, t_root *stack_b, t_cost *cost, int i, int num)
 {
 	int	target;
 	int	index;
 
-	target = get_prev_number(stack_a->sentinel->next->number, stack_b);
+	target = get_prev_number(num, stack_b);
 	index = get_target_index(stack_b, target);
 	if (index <= stack_b->node_len / 2)
 		cost->rb = index;
@@ -49,7 +49,7 @@ static void	process_stack_a(
 		if (!(lis_f && cur_a->lis))
 		{
 			init_cost(&cost);
-			set_cost_for_pb(stack_a, stack_b, cost, i);
+			set_cost_for_pb(stack_a, stack_b, cost, i, cur_a->number);
 			minimize_cost(&cost);
 			if (compere_cost(cost, *min_cost) == -1)
 				copy_cost(cost, min_cost);
