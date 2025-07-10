@@ -87,40 +87,74 @@ static void	set_cost_for_pa(
 }
 
 /*
+** Helper: create cost struct for a PB candidate
+*/
+static t_cost	*generate_pb_cost(t_root *a, t_root *b, int idx, int num)
+{
+    t_cost *cost;
+
+    cost = malloc(sizeof(t_cost));
+    if (!cost)
+        return (NULL);
+    init_cost_zero(cost);
+    set_cost_for_pb(a, b, cost, idx, num);
+    minimize_cost(&cost);
+    return (cost);
+}
+
+/*
+** Helper: create cost struct for a PA candidate
+*/
+static t_cost	*generate_pa_cost(t_root *a, t_root *b, int idx)
+{
+    t_cost *cost;
+
+    cost = malloc(sizeof(t_cost));
+    if (!cost)
+        return (NULL);
+    init_cost_zero(cost);
+    set_cost_for_pa(a, b, cost, idx);
+    minimize_cost(&cost);
+    return (cost);
+}
+
+/*
+** Helper: update min_cost pointer
+*/
+static void	update_min_cost(t_cost **min_cost, t_cost *candidate)
+{
+    if (!candidate)
+        return ;
+    if (*min_cost == NULL || total_cost(candidate) < total_cost(*min_cost))
+    {
+        free(*min_cost);
+        *min_cost = candidate;
+    }
+    else
+        free(candidate);
+}
+
+/*
 ** Calculate costs for all push to B candidates
 */
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f)
 {
-	t_cost	*cost;
-	t_cost	*min_cost;
-	t_list	*cur_a;
-	int		i;
+    t_cost  *min_cost;
+    t_list  *cur;
+    int      idx;
 
-	min_cost = NULL;
-	cur_a = stack_a->sentinel->next;
-	i = 0;
-	while (cur_a != stack_a->sentinel)
-	{
-		if (lis_f == false || cur_a->lis == false)
-		{
-			cost = malloc(sizeof(t_cost));
-			if (!cost)
-				return (min_cost);
-			init_cost_zero(cost);
-			set_cost_for_pb(stack_a, stack_b, cost, i, cur_a->number);
-			minimize_cost(&cost);
-			if (min_cost == NULL || total_cost(cost) < total_cost(min_cost))
-			{
-				free(min_cost);
-				min_cost = cost;
-			}
-			else
-				free(cost);
-		}
-		cur_a = cur_a->next;
-		i++;
-	}
-	return (min_cost);
+    min_cost = NULL;
+    cur = stack_a->sentinel->next;
+    idx = 0;
+    while (cur != stack_a->sentinel)
+    {
+        if (lis_f == false || cur->lis == false)
+            update_min_cost(&min_cost,
+                generate_pb_cost(stack_a, stack_b, idx, cur->number));
+        cur = cur->next;
+        idx++;
+    }
+    return (min_cost);
 }
 
 /*
@@ -128,31 +162,19 @@ t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f)
 */
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b)
 {
-	t_cost	*cost;
-	t_cost	*min_cost;
-	t_list	*cur_b;
-	int		i;
+    t_cost  *min_cost;
+    t_list  *cur;
+    int      idx;
 
-	min_cost = NULL;
-	cur_b = stack_b->sentinel->next;
-	i = 0;
-	while (cur_b != stack_b->sentinel)
-	{
-		cost = malloc(sizeof(t_cost));
-		if (!cost)
-			return (min_cost);
-		init_cost_zero(cost);
-		set_cost_for_pa(stack_a, stack_b, cost, i);
-		minimize_cost(&cost);
-		if (min_cost == NULL || total_cost(cost) < total_cost(min_cost))
-		{
-			free(min_cost);
-			min_cost = cost;
-		}
-		else
-			free(cost);
-		cur_b = cur_b->next;
-		i++;
-	}
-	return (min_cost);
+    min_cost = NULL;
+    cur = stack_b->sentinel->next;
+    idx = 0;
+    while (cur != stack_b->sentinel)
+    {
+        update_min_cost(&min_cost,
+            generate_pa_cost(stack_a, stack_b, idx));
+        cur = cur->next;
+        idx++;
+    }
+    return (min_cost);
 }

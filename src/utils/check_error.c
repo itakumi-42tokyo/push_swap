@@ -44,31 +44,54 @@ int	check_sorted(int *numbers, int len)
 	return (1);
 }
 
-int	*check_error(int argc, char *argv[])
+/*
+** Parse argv to int array, set error flag if any conversion fails
+*/
+static int	*parse_numbers(int argc, char **argv, bool *err)
 {
-	int		i;
-	bool	error;
-	int		*numbers;
+	int *nums;
+	int i;
 
-	i = 0;
-	error = false;
-	numbers = malloc(sizeof(int) * (argc - 1));
-	if (numbers == NULL)
+	nums = malloc(sizeof(int) * (argc - 1));
+	if (!nums)
 		return (NULL);
+	i = 0;
 	while (*argv)
 	{
-		numbers[i] = ut_atoi_with_error(*argv, &error);
-		if (error)
-			return (free(numbers), NULL);
+		nums[i] = ut_atoi_with_error(*argv, err);
+		if (*err)
+			return (free(nums), NULL);
 		i++;
 		argv++;
 	}
-	if (check_sorted(numbers, argc - 1) != 0)
+	return (nums);
+}
+
+/*
+** Validate array: sorted/duplication rules
+*/
+static int	validate_numbers(int *nums, int count)
+{
+	if (check_sorted(nums, count) != 0)
 	{
-		free(numbers);
-		exit (EXIT_SUCCESS);
+		free(nums);
+		exit(EXIT_SUCCESS);
 	}
-	if (check_duplication(numbers, 0, argc - 2) != 0)
+	if (check_duplication(nums, 0, count - 1) != 0)
+		return (-1);
+	return (0);
+}
+
+int	*check_error(int argc, char *argv[])
+{
+	int	 *numbers;
+	bool error;
+
+	error = false;
+	numbers = parse_numbers(argc, argv, &error);
+	if (numbers == NULL)
+		return (NULL);
+	if (validate_numbers(numbers, argc - 1) == -1)
 		return (free(numbers), NULL);
 	return (numbers);
 }
