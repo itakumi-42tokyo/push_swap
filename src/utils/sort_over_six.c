@@ -6,14 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/05 18:00:11 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:08:07 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "list.h"
-
-#include <stdio.h>
 
 void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b)
 {
@@ -97,11 +95,13 @@ static void	rotate_min_to_top(t_root *stack_a)
 ** Uses LIS (Longest Increasing Subsequence) optimization
 ** Falls back to best_move algorithm if LIS is too small
 */
-int		 sort_over_six(int argc, t_root *stack_a)
+// keep fallback returning 0/-1?Assuming sort_best_move returns NULL previously;
+// we'll change its return to int later but for now treat success as 0.
+int	sort_over_six(int argc, t_root *stack_a)
 {
-	(void)argc;
 	t_root	*stack_b;
 
+	(void)argc;
 	stack_b = ut_create_root();
 	if (stack_b == NULL)
 		return (-1);
@@ -109,7 +109,7 @@ int		 sort_over_six(int argc, t_root *stack_a)
 	if (stack_a->lis_count < stack_a->node_len / 6)
 	{
 		cdll_clear(&stack_b, cdll_delone);
-		return (sort_best_move(argc, stack_a)); // keep fallback returning 0/-1? Assuming sort_best_move returns NULL previously; we'll change its return to int later but for now treat success as 0.
+		return (sort_best_move(stack_a));
 	}
 	push_non_lis_to_b(stack_a, stack_b);
 	merge_b_to_a(stack_a, stack_b);

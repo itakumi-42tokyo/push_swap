@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/24 20:53:25 by itakumi           #+#    #+#              #
-#    Updated: 2025/07/09 22:59:14 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/10 21:15:40 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = main.c\
 		utils/coord_comp.c\
 		utils/exit_and_errormsg.c\
 		utils/lis.c\
+		utils/lis2.c\
 		utils/cost_calc.c\
 		utils/cost_calc2.c\
 		utils/cost_utils.c\
@@ -37,6 +38,7 @@ SRCS = main.c\
 		utils/rotate.c\
 		utils/sort_over_six.c\
 		utils/sort_under_five.c\
+		utils/sort_five.c\
 		utils/sort_best_move.c\
 		utils/swap.c\
 		utils/insert_sorted.c\

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:14:27 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 21:21:14 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:24:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	check_sorted(int *numbers, int len)
 */
 static int	*parse_numbers(int argc, char **argv, bool *err)
 {
-	int *nums;
-	int i;
+	int	*nums;
+	int	i;
 
 	nums = malloc(sizeof(int) * (argc - 1));
 	if (!nums)
@@ -84,8 +84,8 @@ static int	validate_numbers(int *nums, int count)
 
 int	*check_error(int argc, char *argv[])
 {
-	int	 *numbers;
-	bool error;
+	int		*numbers;
+	bool	error;
 
 	error = false;
 	numbers = parse_numbers(argc, argv, &error);

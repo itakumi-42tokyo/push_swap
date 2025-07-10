@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:13:35 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/09 22:47:05 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:43:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 // 合計のコストも書いておくべきか？
 typedef struct s_cost
 {
-	int	i;
 	int	ra;
 	int	rb;
 	int	rr;

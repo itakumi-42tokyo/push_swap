@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 18:00:11 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/10 19:25:47 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:07:49 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,12 @@ static void	merge_from_b_cost_based(t_root *stack_a, t_root *stack_b)
 /*
 ** Fallback sorting method using cost-based push/merge
 */
-int		 sort_best_move(int argc, t_root *stack_a)
+int	sort_best_move(t_root *stack_a)
 {
 	int		to_push;
 	int		index;
 	t_root	*stack_b;
 
-	(void)argc;
 	stack_b = ut_create_root();
 	if (!stack_b)
 		return (-1);

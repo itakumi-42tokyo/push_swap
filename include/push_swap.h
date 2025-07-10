@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:53:30 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/10 19:17:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:48:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ int		binary_search(int numbers[], int target, int len);
 int		*check_error(int argc, char *argv[]);
 int		check_duplication(int *numbers, int low, int high);
 void	exit_and_errormsg(void);
+void	sort_five(t_root *stack_a, t_root *stack_b);
 int		sort_under_five(int argc, t_root *stack_a);
 int		sort_over_six(int argc, t_root *stack_a);
+int		sort_best_move(t_root *stack_a);
 int		*ut_atoi_numbers(int argc, char *argv[]);
 int		ut_atoi_with_error(const char *nptr, bool *error);
 int		ut_issign(int c);
@@ -75,7 +77,14 @@ void	carry_out_cost(t_cost *cost, t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pa(t_root *stack_a, t_root *stack_b);
 t_cost	*count_cost_pb(t_root *stack_a, t_root *stack_b, bool lis_f);
 void	count_cost_process(t_root *stack_a, t_cost **min_cost);
-int			 sort_best_move(int argc, t_root *stack_a);
+void	update_min_cost(t_cost **min_cost, t_cost *candidate);
+void	init_cost_zero(t_cost *cost);
+int		total_cost(t_cost *cost);
+void	set_cost_for_pb(t_root *a, t_root *b, t_cost *cost, int idx0_num1[]);
+void	set_cost_for_pa(t_root *stack_a, t_root *stack_b, t_cost *cost, int i);
 void	insert_sorted_pb(t_root *stack_a, t_root *stack_b);
+int		*format_array(t_root *root);
+int		find_lis(int argc, t_root *stack_a);
+int		lis(int arr[], int n, int result[]);
 
 #endif

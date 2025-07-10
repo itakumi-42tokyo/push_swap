@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:26:05 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/10 19:18:05 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:05:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	sort_three(t_root *stack_a)
 		ra(stack_a);
 	else if (max == (stack_a->sentinel)->next->next->number)
 		rra(stack_a);
-	if ((stack_a->sentinel)->next->number > (stack_a->sentinel)->next->next->number)
+	if ((stack_a->sentinel)->next->number
+		> (stack_a->sentinel)->next->next->number)
 		sa(stack_a);
 	return (0);
 }
@@ -53,40 +54,10 @@ static void	sort_four(t_root *stack_a, t_root *stack_b)
 }
 
 /*
-** Push two smallest elements to stack B
-*/
-static void	push_two_smallest(t_root *stack_a, t_root *stack_b)
-{
-	put_min_top(stack_a);
-	pb(stack_a, stack_b);
-	put_min_top(stack_a);
-	pb(stack_a, stack_b);
-}
-
-/*
-** Sort remaining three elements and push back from B
-*/
-static void	merge_three_and_push_back(t_root *stack_a, t_root *stack_b)
-{
-	sort_three(stack_a);
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
-}
-
-/*
-** Sort five elements by pushing two smallest to B, sorting 3, then merging
-*/
-static void	sort_five(t_root *stack_a, t_root *stack_b)
-{
-	push_two_smallest(stack_a, stack_b);
-	merge_three_and_push_back(stack_a, stack_b);
-}
-
-/*
 ** Main dispatcher for sorting 2-5 elements
 ** Selects appropriate sorting algorithm based on element count
 */
-int		 sort_under_five(int argc, t_root *stack_a)
+int	sort_under_five(int argc, t_root *stack_a)
 {
 	t_root	*stack_b;
 

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 15:59:05 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/10 00:12:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:23:30 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ int	main(int argc, char **argv)
 	cdll_clear(&stack_a, cdll_delone);
 	return (0);
 }
-
